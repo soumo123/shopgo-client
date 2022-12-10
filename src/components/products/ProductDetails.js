@@ -99,7 +99,7 @@ const reviewSubmitHandler = ()=>{
 
 
 const fetchProductDetails = async()=>{
-   const response = await axios.get(`/api/soummya/product/${productId}`).catch((err)=>{
+   const response = await axios.get(`https://shopgo.onrender.com/api/soummya/product/${productId}`).catch((err)=>{
   })
   dispatch(getProductDetails(response.data.product))
   
