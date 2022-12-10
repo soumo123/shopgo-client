@@ -1,0 +1,20 @@
+.deliverydate{
+    background-color: rgb(156, 224, 28);
+    border-radius: 35px;
+    width: 55%;
+    text-align: center;
+    padding: 3px 17px;
+
+}
+
+@media (max-width: 767px) {
+
+
+.detail-image, .order-details{
+    text-align: center;
+}
+
+
+
+
+    }
