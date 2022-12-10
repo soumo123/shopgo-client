@@ -238,7 +238,7 @@ export const getAllReviews = (id) => async (dispatch) => {
         const token = localStorage.getItem('token')
         dispatch({type:ALL_REVIEW_REQUEST})
 
-        const {data} = await axios.get(`/api/soummya/reviews?id=${id}`)
+        const {data} = await axios.get(`https://shopgo.onrender.com/api/soummya/reviews?id=${id}`)
         dispatch({type:ALL_REVIEW_SUCCESS,payload:data.reviews})
 
     } catch (error) {
@@ -259,7 +259,7 @@ export const deleteReviews = (reviewId,productId) => async (dispatch) => {
 
         dispatch({type:DELETE_REVIEW_REQUEST})
 
-        const {data} = await axios.delete(`/api/soummya/reviews?id=${reviewId}&productId=${productId}`)
+        const {data} = await axios.delete(`https://shopgo.onrender.com/api/soummya/reviews?id=${reviewId}&productId=${productId}`)
         
         dispatch({type:DELETE_REVIEW_SUCCESS,payload:data.success})
 
@@ -281,7 +281,7 @@ export const getDealProductDetails = () => async (dispatch) => {
     try {
       dispatch({ type: DEAL_PRODUCT_REQUEST });
   
-      const { data } = await axios.get(`/api/soummya/discountProducts`);
+      const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/discountProducts`);
 
       dispatch({
         type: DEAL_PRODUCT_SUCCESS,
@@ -319,7 +319,7 @@ export const updateLike = (id,likes) => async (dispatch) => {
             withCredentials: true
         }
 
-        const { data } = await axios.put(`/api/soummya/like/${id}/${token}?likes=${likes}`,config)
+        const { data } = await axios.put(`https://shopgo.onrender.com/api/soummya/like/${id}/${token}?likes=${likes}`,config)
        
         dispatch({ type: LIKE_PRODUCT_SUCCESS, payload: data.success })
 
@@ -342,7 +342,7 @@ export const getallLikebleProducts = () => async (dispatch) => {
     try {
       dispatch({ type: GET_LIKE_PRODUCT_REQUEST });
   
-      const { data } = await axios.get(`/api/soummya/likes`);
+      const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/likes`);
      
   
       dispatch({

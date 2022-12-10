@@ -55,7 +55,7 @@ export const login = (email, password) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const { data } = await axios.post("/api/soummya/login", { email, password },config)
+        const { data } = await axios.post("https://shopgo.onrender.com/api/soummya/login", { email, password },config)
         const profileData = data
        
         localStorage.setItem("token",data.token)
@@ -79,7 +79,7 @@ export const register = (userData) => async (dispatch) => {
                 'Content-Type': "multipart/form-data"
             }
         }
-        const link  ='/api/soummya/register'
+        const link  ='https://shopgo.onrender.com/api/soummya/register'
         const { data } = await axios.post(link, userData, config)
         dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user })
         
@@ -98,7 +98,7 @@ export const loadUser = () => async (dispatch) => {
        
         // dispatch({ type: LOAD_USER_REQUEST })
         const token = localStorage.getItem('token')
-        const { data } = await axios.get(`/api/soummya/me/${token}`)
+        const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/me/${token}`)
    
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user})
     } catch (error) {
@@ -112,7 +112,7 @@ export const logout = () => async (dispatch) => {
     try {
        
         // const token = localStorage.getItem('token')
-        await axios.get("/api/soummya/logout")
+        await axios.get("https://shopgo.onrender.com/api/soummya/logout")
    
         dispatch({ type: LOGOUT_SUCCESS})
     } catch (error) {
@@ -138,7 +138,7 @@ export const updateProfile = (userData) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const link  = `/api/soummya/me/update/${token}`
+        const link  = `https://shopgo.onrender.com/api/soummya/me/update/${token}`
         const { data } = await axios.put(link,userData , config)
        
         dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data })
