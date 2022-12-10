@@ -166,7 +166,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const link  = `/api/soummya/password/update/${token}`
+        const link  = `https://shopgo.onrender.com/api/soummya/password/update/${token}`
         const { data } = await axios.put(link,passwords,config)
        
         dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data })
@@ -190,7 +190,7 @@ export const forgotPassword = (email) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const { data } = await axios.post("/api/soummya/password/forgot", email,config)
+        const { data } = await axios.post("https://shopgo.onrender.com/api/soummya/password/forgot", email,config)
         dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message})
     } catch (error) {
         dispatch({ type: FORGOT_PASSWORD_FAIL, payload: error.response.data.message })
@@ -207,7 +207,7 @@ export const getAllUsers = () => async (dispatch) => {
     try {
         dispatch({ type:  ALL_USER_REQUEST })
         const token = localStorage.getItem('token')
-        const { data } = await axios.get(`/api/soummya/admin/users/${token}`)
+        const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/admin/users/${token}`)
        
         dispatch({ type: ALL_USER_SUCCESS, payload: data.users })
     } catch (error) {
@@ -224,7 +224,7 @@ export const getUserDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type:  USER_DETAILS_REQUEST })
         const token = localStorage.getItem('token')
-        const { data } = await axios.get(`/api/soummya/admin/user/${id}/${token}`)
+        const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/admin/user/${id}/${token}`)
       
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user })
     } catch (error) {
@@ -247,7 +247,7 @@ export const updateUser = (id,userData) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const { data } = await axios.put(`/api/soummya/admin/user/${id}/${token}`,userData , config)
+        const { data } = await axios.put(`https://shopgo.onrender.com/api/soummya/admin/user/${id}/${token}`,userData , config)
         
         dispatch({ type: UPDATE_USER_SUCCESS, payload: data.success })
     } catch (error) {
@@ -264,7 +264,7 @@ export const deleteUser = (id) => async (dispatch) => {
     try {
         dispatch({ type:  DELETE_USER_REQUEST })
         const token = localStorage.getItem('token')
-        const { data } = await axios.delete(`/api/soummya/admin/user/${id}/${token}`)
+        const { data } = await axios.delete(`https://shopgo.onrender.com/api/soummya/admin/user/${id}/${token}`)
         
         dispatch({ type: DELETE_USER_SUCCESS, payload: data })
     } catch (error) {
@@ -290,7 +290,7 @@ export const getOtpFunction = (number) => async (dispatch) => {
                 'Content-Type': "multipart/form-data"
             }
         }
-        const link  ='/api/soummya/generate/otp'
+        const link  ='https://shopgo.onrender.com/api/soummya/generate/otp'
         const { data } = await axios.put(link, number, config)
         dispatch({ type: OTP_SUCCESS, payload: data.user })
         
@@ -316,7 +316,7 @@ export const verifyOtpFunction = (otp) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const link  ='/api/soummya/verify/otp'
+        const link  ='https://shopgo.onrender.com/api/soummya/verify/otp'
         const { data } = await axios.post(link, otp, config)
         const profileData = data.user
        

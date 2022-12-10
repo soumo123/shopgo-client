@@ -5,7 +5,7 @@ import axios from 'axios'
 //Add To Cart
 export const addItemsToCart = (id, quantity) => async (dispatch,getState) => {
 
-    const { data } = await axios.get(`/api/soummya/product/${id}`)
+    const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/product/${id}`)
     
     dispatch({
         type: ADD_TO_CART,

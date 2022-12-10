@@ -34,7 +34,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
             withCredentials: true
         }
 
-        const { data } = await axios.post(`/api/soummya/order/new/${token}`, order, config)
+        const { data } = await axios.post(`https://shopgo.onrender.com/api/soummya/order/new/${token}`, order, config)
         
         dispatch({ type: CREATE_ORDER_SUCCESS, payload: data })
 
@@ -58,7 +58,7 @@ export const myOrders = () => async (dispatch, getState) => {
         const token = localStorage.getItem('token')
         dispatch({ type: MY_ORDER_REQUEST })
 
-        const { data } = await axios.get(`/api/soummya/orders/me/${token}`)
+        const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/orders/me/${token}`)
         dispatch({ type: MY_ORDER_SUCCESS, payload: data.orders })
 
 
@@ -84,7 +84,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
         const token = localStorage.getItem('token')
         dispatch({ type: ORDER_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/soummya/order/${id}/${token}`)
+        const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/order/${id}/${token}`)
         dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order })
 
 
@@ -107,7 +107,7 @@ export const getAllOrders = () => async (dispatch) => {
         const token = localStorage.getItem('token')
         dispatch({ type: ALL_ORDER_REQUEST })
 
-        const { data } = await axios.get(`/api/soummya/admin/orders/${token}`)
+        const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/admin/orders/${token}`)
         dispatch({ type: ALL_ORDER_SUCCESS, payload: data.orders })
 
 
@@ -138,7 +138,7 @@ export const updateOrder = (id,order) => async (dispatch) => {
             withCredentials: true
         }
 
-        const { data } = await axios.put(`/api/soummya/admin/order/${id}/${token}`, order, config)
+        const { data } = await axios.put(`https://shopgo.onrender.com/api/soummya/admin/order/${id}/${token}`, order, config)
         dispatch({ type: UPDATE_ORDER_SUCCESS, payload: data.success })
     } catch (error) {
         dispatch({ type: UPDATE_ORDER_FAIL, payload: error.response.data.message })
@@ -154,7 +154,7 @@ export const deleteOrder = (id) => async (dispatch) => {
     try {
         const token = localStorage.getItem('token')
         dispatch({ type: DELETE_ORDER_REQUEST })
-        const { data } = await axios.delete(`/api/soummya/admin/order/${id}/${token}`)
+        const { data } = await axios.delete(`https://shopgo.onrender.com/api/soummya/admin/order/${id}/${token}`)
         dispatch({ type: DELETE_ORDER_SUCCESS, payload: data.success })
     } catch (error) {
         dispatch({ type: DELETE_ORDER_FAIL, payload: error.response.data.message })
@@ -177,7 +177,7 @@ try {
         withCredentials: true
     }
 
-    const mesage = await axios.post(`/api/soummya/message`, {to:to},config)
+    const mesage = await axios.post(`https://shopgo.onrender.com/api/soummya/message`, {to:to},config)
    
 } catch (error) {
     console.log(error)

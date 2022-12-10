@@ -48,11 +48,11 @@ export const getProduct = (keyword = "", currentPage = 1, price = [0, 20000], ca
 
         dispatch({ type: ALL_PRODUCT_REQUEST })
         if (!category) {
-            const link = `/api/soummya/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`
+            const link = `https://shopgo.onrender.com/api/soummya/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`
             const { data } = await axios.get(link)
             dispatch({ type: ALL_PRODUCT_SUCCESS, payload: data })
         } else {
-            const link = `/api/soummya/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`
+            const link = `https://shopgo.onrender.com/api/soummya/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`
             const { data } = await axios.get(link)
             dispatch({ type: ALL_PRODUCT_SUCCESS, payload: data })
         }
@@ -87,7 +87,7 @@ export const getProductDetailsss = (id) => async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_DETAILS_REQUEST });
   
-      const { data } = await axios.get(`/api/soummya/product/${id}`);
+      const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/product/${id}`);
 
   
       dispatch({
@@ -118,7 +118,7 @@ export const createProduct = (productData) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const { data } = await axios.post(`/api/soummya/admin/product/new/${token}`,productData,config)
+        const { data } = await axios.post(`https://shopgo.onrender.com/api/soummya/admin/product/new/${token}`,productData,config)
        
         dispatch({ type: NEW_PRODUCT_SUCCESS, payload: data })
 
@@ -142,7 +142,7 @@ export const getAdminProducts = () => async (dispatch) => {
         const token = localStorage.getItem('token')
         dispatch({type:ADMIN_PRODUCT_REQUEST})
 
-        const {data} = await axios.get(`/api/soummya/admin/products/${token}`)
+        const {data} = await axios.get(`https://shopgo.onrender.com/api/soummya/admin/products/${token}`)
       
         dispatch({type:ADMIN_PRODUCT_SUCCESS,payload:data.products})
 
@@ -168,7 +168,7 @@ export const newReview = (reviewData) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const { data } = await axios.put(`/api/soummya/review/${token}`,reviewData,config)
+        const { data } = await axios.put(`https://shopgo.onrender.com/api/soummya/review/${token}`,reviewData,config)
         
         dispatch({ type: NEW_REVIEW_SUCCESS, payload: data.success })
 
@@ -188,7 +188,7 @@ export const deleteProduct = (id) => async (dispatch) => {
     try {
         const token = localStorage.getItem('token')
         dispatch({ type: DELETE_PRODUCT_REQUEST })
-        const { data } = await axios.delete(`/api/soummya/admin/product/${id}/${token}`)
+        const { data } = await axios.delete(`https://shopgo.onrender.com/api/soummya/admin/product/${id}/${token}`)
       
         dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data.success })
 
@@ -215,7 +215,7 @@ export const updateProduct = (id,productData) => async (dispatch) => {
             withCredentials: true
         }
 
-        const { data } = await axios.put(`/api/soummya/admin/product/${id}/${token}`,productData,config)
+        const { data } = await axios.put(`https://shopgo.onrender.com/products/api/soummya/admin/product/${id}/${token}`,productData,config)
        
         dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data.success })
 
