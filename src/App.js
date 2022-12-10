@@ -75,7 +75,7 @@ console.log(order && order.success)
      
         <Route exact path="/" element={<Home/>} />
         <Route exact path="/product/:productId" element={<ProductDetails/>} />
-        <Route exact path="/contact" element={<Contact/>} />
+        <Route exact path="https://shopgo-com.onrender.com/contact" element={<Contact/>} />
         <Route exact path="/products" element={<AllProduct/>} />
         <Route  path="/products/:keyword" element={<AllProduct/>} />
         <Route exact path="/search" element={<SearchPrpduct/>} />
