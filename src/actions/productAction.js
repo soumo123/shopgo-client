@@ -115,7 +115,7 @@ export const createProduct = (productData) => async (dispatch) => {
         const config = {
             headers: {
                 'Content-Type': "multipart/form-data",
-                'Accept':"/"
+                
             }
         }
         const { data } = await axios.post(`https://shopgo.onrender.com/api/soummya/admin/product/new/${token}`,productData,config)
