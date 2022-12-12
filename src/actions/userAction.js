@@ -56,7 +56,7 @@ export const login = (email, password) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const { data } = await axios.post(`${env.REACT_PRODUCTION_URL}/api/soummya/login`, { email, password },config)
+        const { data } = await axios.post(`https://shopgo.onrender.com/api/soummya/login`, { email, password },config)
         const profileData = data
        
         localStorage.setItem("token",data.token)
