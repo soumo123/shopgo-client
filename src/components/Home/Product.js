@@ -30,7 +30,7 @@ const Product = ({ product }) => {
         <div className="productcard">
           <Link className="" to={`/product/${product._id}`}>
             <div className="product-img">
-              <img src={product.images[0].url} style={{ height: 200 }} />
+              <img src={product?.images[0].url} style={{ height: 200 }} />
             </div>
 
             <div className="details-box">
