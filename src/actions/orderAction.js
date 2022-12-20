@@ -166,9 +166,9 @@ export const deleteOrder = (id) => async (dispatch) => {
 
 //sending mail///
 
-export const sendMail = (to) => async () => {
+export const sendMail = (to,name) => async () => {
 try {
-    
+ 
     const config = {
         headers: {
             'Content-Type': "application/json",
@@ -177,13 +177,14 @@ try {
         withCredentials: true
     }
 
-    const mesage = await axios.post(`https://shopgo.onrender.com/api/soummya/message`, {to:to},config)
+    const mesage = await axios.post(`/api/soummya/message`, {to:to,name:name},config)
    
 } catch (error) {
     console.log(error)
 }
 
 }
+
 
 
 
