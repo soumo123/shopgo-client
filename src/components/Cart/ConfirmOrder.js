@@ -63,7 +63,7 @@ const codPayement = (e)=>{
   e.preventDefault();
   dispatch(createOrder(order));
   navigate("/success")
-  dispatch(sendMail(to))
+  dispatch(sendMail(to,user.name))
 }
 
 
