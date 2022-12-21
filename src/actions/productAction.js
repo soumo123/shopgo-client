@@ -215,7 +215,7 @@ export const updateProduct = (id,productData) => async (dispatch) => {
             withCredentials: true
         }
 
-        const { data } = await axios.put(`${process.env.REACT_APP_PRODUCTION_URL}/products/api/soummya/admin/product/${id}/${token}`,productData,config)
+        const { data } = await axios.put(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/admin/product/${id}/${token}`,productData,config)
        
         dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data.success })
 
