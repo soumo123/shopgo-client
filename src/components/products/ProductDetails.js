@@ -22,7 +22,10 @@ import { Rating } from "@material-ui/lab";
 
 import { useAlert } from 'react-alert'
 import '../../Responsive.css'
+import env from "react-dotenv";
+
 const ProductDetails = () => {
+
 
 
   const alert = useAlert()
@@ -99,7 +102,7 @@ const reviewSubmitHandler = ()=>{
 
 
 const fetchProductDetails = async()=>{
-   const response = await axios.get(`https://shopgo.onrender.com/api/soummya/product/${productId}`).catch((err)=>{
+   const response = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/product/${productId}`).catch((err)=>{
   })
   dispatch(getProductDetails(response.data.product))
   

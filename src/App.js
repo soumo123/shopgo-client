@@ -46,13 +46,13 @@ import OtpVerification from './components/users/OtpVerification';
 function App() {
 
 
+
   const[stripeApiKey,setStripeApiKey] = useState("")
 const token = localStorage.getItem('token')
   async function getStripeApiKey(){
-    const {data} = await axios.get(`https://shopgo.onrender.com/api/soummya/stripeApiKey/${token}`)
+    const {data} = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/stripeApiKey/${token}`)
     setStripeApiKey(data.stripeApiKey)
   }
-  
 
 useEffect(() => {
   store.dispatch(loadUser())

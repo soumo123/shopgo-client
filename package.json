@@ -19,6 +19,7 @@
     "bootstrap": "^5.2.0",
     "chart.js": "^3.6.0",
     "country-state-city": "^3.0.1",
+    "dotenv": "^16.0.3",
     "js-cookie": "^3.0.1",
     "overlay-navbar": "^1.1.1",
     "react": "^17.0.2",
@@ -66,5 +67,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:8000"
 }

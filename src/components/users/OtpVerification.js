@@ -47,9 +47,9 @@ const verifyOtp = (e)=>{
 useEffect(() => {
   if(success==true) {
     alert.success("Login Successfull")
-    // setInterval(() => {
-    //   window.location.reload();
-    // }, 2000);
+    setInterval(() => {
+      window.location.reload();
+    }, 2000);
     navigate('/')
   }
   if(success==false) {
@@ -86,7 +86,7 @@ useEffect(() => {
                     <div className="form-group login-label">
                         <label for="inputnumber">One Time Password</label>
                         <input type="number" className="form-control input-edit" placeholder='Enter OTP' onChange={(e)=>setOtp(e.target.value)}/>
-                        <label className="pull-right resend-otp" >Resend otp</label>
+                        {/* <label className="pull-right resend-otp" >Resend otp</label> */}
                     </div>
                     <button type="submit">Verify</button>
                    

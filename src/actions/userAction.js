@@ -56,7 +56,7 @@ export const login = (email, password) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const { data } = await axios.post(`https://shopgo.onrender.com/api/soummya/login`, { email, password },config)
+        const { data } = await axios.post(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/login`, { email, password },config)
         const profileData = data
        
         localStorage.setItem("token",data.token)
@@ -80,7 +80,7 @@ export const register = (userData) => async (dispatch) => {
                 'Content-Type': "multipart/form-data"
             }
         }
-        const link  ='https://shopgo.onrender.com/api/soummya/register'
+        const link  =`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/register`
         const { data } = await axios.post(link, userData, config)
         dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user })
         
@@ -99,7 +99,7 @@ export const loadUser = () => async (dispatch) => {
        
         // dispatch({ type: LOAD_USER_REQUEST })
         const token = localStorage.getItem('token')
-        const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/me/${token}`)
+        const { data } = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/me/${token}`)
    
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user})
     } catch (error) {
@@ -113,7 +113,7 @@ export const logout = () => async (dispatch) => {
     try {
        
         // const token = localStorage.getItem('token')
-        await axios.get("https://shopgo.onrender.com/api/soummya/logout")
+        await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/logout`)
    
         dispatch({ type: LOGOUT_SUCCESS})
     } catch (error) {
@@ -139,7 +139,7 @@ export const updateProfile = (userData) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const link  = `https://shopgo.onrender.com/api/soummya/me/update/${token}`
+        const link  = `${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/me/update/${token}`
         const { data } = await axios.put(link,userData , config)
        
         dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data })
@@ -167,7 +167,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const link  = `https://shopgo.onrender.com/api/soummya/password/update/${token}`
+        const link  = `${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/password/update/${token}`
         const { data } = await axios.put(link,passwords,config)
        
         dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data })
@@ -191,7 +191,7 @@ export const forgotPassword = (email) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const { data } = await axios.post("https://shopgo.onrender.com/api/soummya/password/forgot", email,config)
+        const { data } = await axios.post(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/password/forgot`, email,config)
         dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message})
     } catch (error) {
         dispatch({ type: FORGOT_PASSWORD_FAIL, payload: error.response.data.message })
@@ -208,7 +208,7 @@ export const getAllUsers = () => async (dispatch) => {
     try {
         dispatch({ type:  ALL_USER_REQUEST })
         const token = localStorage.getItem('token')
-        const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/admin/users/${token}`)
+        const { data } = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/admin/users/${token}`)
        
         dispatch({ type: ALL_USER_SUCCESS, payload: data.users })
     } catch (error) {
@@ -225,7 +225,7 @@ export const getUserDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type:  USER_DETAILS_REQUEST })
         const token = localStorage.getItem('token')
-        const { data } = await axios.get(`https://shopgo.onrender.com/api/soummya/admin/user/${id}/${token}`)
+        const { data } = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/admin/user/${id}/${token}`)
       
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user })
     } catch (error) {
@@ -248,7 +248,7 @@ export const updateUser = (id,userData) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const { data } = await axios.put(`https://shopgo.onrender.com/api/soummya/admin/user/${id}/${token}`,userData , config)
+        const { data } = await axios.put(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/admin/user/${id}/${token}`,userData , config)
         
         dispatch({ type: UPDATE_USER_SUCCESS, payload: data.success })
     } catch (error) {
@@ -265,7 +265,7 @@ export const deleteUser = (id) => async (dispatch) => {
     try {
         dispatch({ type:  DELETE_USER_REQUEST })
         const token = localStorage.getItem('token')
-        const { data } = await axios.delete(`https://shopgo.onrender.com/api/soummya/admin/user/${id}/${token}`)
+        const { data } = await axios.delete(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/admin/user/${id}/${token}`)
         
         dispatch({ type: DELETE_USER_SUCCESS, payload: data })
     } catch (error) {
@@ -291,7 +291,7 @@ export const getOtpFunction = (number) => async (dispatch) => {
                 'Content-Type': "multipart/form-data"
             }
         }
-        const link  ='https://shopgo.onrender.com/api/soummya/generate/otp'
+        const link  =`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/generate/otp`
         const { data } = await axios.put(link, number, config)
         dispatch({ type: OTP_SUCCESS, payload: data.user })
         
@@ -317,7 +317,7 @@ export const verifyOtpFunction = (otp) => async (dispatch) => {
             },
             withCredentials: true
         }
-        const link  ='https://shopgo.onrender.com/api/soummya/verify/otp'
+        const link  =`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/verify/otp`
         const { data } = await axios.post(link, otp, config)
         const profileData = data.user
        

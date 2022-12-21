@@ -15,7 +15,7 @@ const ConfirmOrder = () => {
 
   console.log("cartItemssss",cartItems)
   const { user } = useSelector((state) => state.user)
-
+  const userDetails = localStorage.getItem('profile')
 
 const subtotal = cartItems.reduce((acc,item)=>acc + item.quantity * item.price,0)
 
@@ -58,12 +58,11 @@ const order = {
 
 }
 
-
 const codPayement = (e)=>{
   e.preventDefault();
   dispatch(createOrder(order));
   navigate("/success")
-  dispatch(sendMail(to))
+  dispatch(sendMail(to,user.name))
 }
 
 
