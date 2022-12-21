@@ -177,13 +177,14 @@ try {
         withCredentials: true
     }
 
-    const mesage = await axios.post(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/message`, {to:to,name:name},config)
+    const mesage = await axios.post(`/api/soummya/message`, {to:to,name:name},config)
    
 } catch (error) {
     console.log(error)
 }
 
 }
+
 
 
 
