@@ -9,10 +9,11 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Sidebar from './Sidebar'
 import Metadata from '../layout/Metadata'
 import { DELETE_PRODUCT_RESET } from '../../constants/productConstants';
-
+import { useAlert } from 'react-alert'
 
 const ProductList = () => {
 
+  const alert = useAlert()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const {error,products} = useSelector((state) => state.products)
@@ -34,9 +35,9 @@ const deleteProductHandler = (id)=>{
     dispatch(getAdminProducts());
 
     if(isDeleted){
-      alert("Product Deleted Succesfully")
-      navigate("/admin/dashboard");
+      alert.success("Product Deleted Succesfully")
       dispatch({type:DELETE_PRODUCT_RESET})
+      // navigate("/admin/dashboard");
     }
   }, [error,alert,dispatch,navigate,isDeleted]);
   
@@ -49,23 +50,29 @@ const deleteProductHandler = (id)=>{
     {
       field: "name",
       headerName: "Name",
-      minWidth: 350,
-      flex: 1,
+      minWidth: 150,
+      flex: 0.5,
+    },
+    {
+      field: "createdAt",
+      headerName: "Date",
+      minWidth: 150,
+      flex: 0.3,
     },
     {
       field: "stock",
       headerName: "Stock",
       type: "number",
-      minWidth: 150,
-      flex: 0.3,
+      minWidth: 270,
+      flex: 0.5,
     },
 
     {
       field: "price",
       headerName: "Price",
       type: "number",
-      minWidth: 270,
-      flex: 0.5,
+      minWidth: 150,
+      flex: 0.3,
     },
 
     {
@@ -104,6 +111,7 @@ const deleteProductHandler = (id)=>{
         stock: item.stock,
         price: item.price,
         name: item.name,
+        createdAt:item.createdAt.substring(0, 10)
       });
     });
 

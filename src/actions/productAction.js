@@ -216,13 +216,13 @@ export const updateProduct = (id,productData) => async (dispatch) => {
         }
 
         const { data } = await axios.put(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/admin/product/${id}/${token}`,productData,config)
-       
         dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data.success })
 
     } catch (error) {
+        // console.log("error",error.response.data.success)
         dispatch({
             type: UPDATE_PRODUCT_FAIL,
-            payload: error.response.data.message
+            payload: error.response.data.success
         })
     }
 }

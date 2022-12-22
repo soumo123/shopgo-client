@@ -1,131 +1,136 @@
-import React,{useState,useEffect} from 'react'
-import{useNavigate,useParams} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import Sidebar from './Sidebar'
-import {useSelector,useDispatch} from 'react-redux'
-import {updateProduct,getProclearErrors,getProductDetailsss} from '../../actions/productAction'
-import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateProduct, getProclearErrors, getProductDetailsss } from '../../actions/productAction'
+import {  UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 
 import { useAlert } from 'react-alert'
 import Metadata from '../layout/Metadata'
 const UpdateProduct = () => {
 
 
-const alert = useAlert()
-const dispatch = useDispatch()
-const navigate = useNavigate()
-const {loading,error,isUpdated} =useSelector((state) => state.productAdmin)
-const {product}= useSelector((state) => state.productDetailsReducers)
-const paramsId = useParams()
+    const alert = useAlert()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { loading, error, isUpdated } = useSelector((state) => state.productAdmin)
+    console.log("isUpdated",isUpdated)
+    const { product } = useSelector((state) => state.productDetailsReducers)
+    const paramsId = useParams()
 
-const[name,setName] = useState("")
-const[price,setPrice] = useState("")
-const[description,setDescription] = useState("")
-const[stock,setStock] = useState(0)
-const[discount,setDiscount] = useState(0)
-const[images,setImages] = useState([])
-const[imagesPreview,setImagesPreview] = useState([])
-const [oldImages, setOldImages] = useState([]);
-const[category,setCategory] = useState("")
-const[color,setColor] = useState("")
-const[size,setSize] = useState("")
+    const [name, setName] = useState("")
+    const [price, setPrice] = useState("")
+    const [description, setDescription] = useState("")
+    const [stock, setStock] = useState(0)
+    const [discount, setDiscount] = useState(0)
+    const [images, setImages] = useState([])
+    const [imagesPreview, setImagesPreview] = useState([])
+    const [oldImages, setOldImages] = useState([]);
+    const [category, setCategory] = useState("")
+    const [color, setColor] = useState("")
+    const [size, setSize] = useState("")
 
 
 
-const categories = [
-    "Men-Shirts",
-    "Men-Trousers",
-    "Sharees",
-    "Womens-Accessory",
-    "Mobile-covers",
-    "Chocolate-Covers",
-    "Home-Decoratives",
-    "Paintings",
-    "jewellery"
-      // "oven",
-      // "electronics",
-      // "machine",
-      // "accesries",
-      // "Shirts",
-      // "Jweallries"
+    const categories = [
+        "Men-Shirts",
+        "Men-Trousers",
+        "Sharees",
+        "Womens-Accessory",
+        "Mobile-covers",
+        "Chocolate-Covers",
+        "Home-Decoratives",
+        "Paintings",
+        "jewellery"
+        // "oven",
+        // "electronics",
+        // "machine",
+        // "accesries",
+        // "Shirts",
+        // "Jweallries"
     ]
 
-  useEffect(() => {
+    useEffect(() => {
 
-    if (product && product?._id !== paramsId.id) {
-        dispatch(getProductDetailsss(paramsId.id));
-      } else {
-        setName(product?.name);
-        setDescription(product?.description);
-        setPrice(product?.actualpricebydiscount);
-        setCategory(product?.category);
-        setStock(product?.stock);
-        setDiscount(product?.discount);
-        setColor(product?.color)
-        setSize(product?.size)
-        setOldImages(product?.images);
-      }
-
-// dispatch(getProductDetailsss(paramsId.id));
-   if(error){
-    alert.error("Not Updated!!!")
-    dispatch(getProclearErrors())
-   }
-   if(isUpdated){
-    alert.success("Product Updated Succsfully")
-    dispatch({type:UPDATE_PRODUCT_RESET})
-    navigate("/admin/products")
-    
-   }
-   
-  }, [dispatch,alert,navigate,isUpdated,paramsId,product])
-  
-
-
-  const updateProductSubmitHandler = (e)=>{
-    e.preventDefault()
-    const myForm = new FormData()
-    myForm.set("name",name)
-    myForm.set("price",price)
-    myForm.set("description",description)
-    myForm.set("stock",stock)
-    myForm.set("discount",discount)
-    myForm.set("category",category)
-    myForm.set("color",color)
-    myForm.set("size",size)
-    images.forEach((image)=>{
-        myForm.append("images",image)
-    })
-
-    dispatch(updateProduct(paramsId.id,myForm))
-}
-
-
-const updateProductImagesChange = (e) => {
-    const files = Array.from(e.target.files);
-
-    setImages([]);
-    setImagesPreview([]);
-
-    files.forEach((file) => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImagesPreview((old) => [...old, reader.result]);
-          setImages((old) => [...old, reader.result]);
+        if (product && product?._id !== paramsId.id) {
+            dispatch(getProductDetailsss(paramsId.id));
+        } else {
+            setName(product?.name);
+            setDescription(product?.description);
+            setPrice(product?.actualpricebydiscount);
+            setCategory(product?.category);
+            setStock(product?.stock);
+            setDiscount(product?.discount);
+            setColor(product?.color)
+            setSize(product?.size)
+            setOldImages(product?.images);
         }
-      };
 
-      reader.readAsDataURL(file);
-    });
-  };
+        // dispatch(getProductDetailsss(paramsId.id));
+        if (error) {
+            alert.error("Not Updated!!!")
+            dispatch(getProclearErrors())
+        }
+        if (isUpdated) {
+            alert.success("Product Updated Succsfully")
+            dispatch({ type: UPDATE_PRODUCT_RESET })
+            navigate("/admin/products")
+        }
+        if(isUpdated ==false){
+            alert.error("Product Not Updated")
+            dispatch({ type: UPDATE_PRODUCT_RESET })
+            navigate("/admin/products")
+        }
+
+    }, [dispatch, alert, navigate, paramsId,isUpdated, product])
+
+
+
+    const updateProductSubmitHandler = (e) => {
+        e.preventDefault()
+        const myForm = new FormData()
+        myForm.set("name", name)
+        myForm.set("price", price)
+        myForm.set("description", description)
+        myForm.set("stock", stock)
+        myForm.set("discount", discount)
+        myForm.set("category", category)
+        myForm.set("color", color)
+        myForm.set("size", size)
+        images.forEach((image) => {
+            myForm.append("images", image)
+        })
+
+        dispatch(updateProduct(paramsId.id, myForm))
+    }
+
+
+    const updateProductImagesChange = (e) => {
+        const files = Array.from(e.target.files);
+
+        setImages([]);
+        setImagesPreview([]);
+
+        files.forEach((file) => {
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setImagesPreview((old) => [...old, reader.result]);
+                    setImages((old) => [...old, reader.result]);
+                }
+            };
+
+            reader.readAsDataURL(file);
+        });
+    };
 
 
 
 
     return (
         <>
-        <Metadata title="Update Product"/>
+            <Metadata title="Update Product" />
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-lg-12">
@@ -183,16 +188,16 @@ const updateProductImagesChange = (e) => {
                                     <div className="col-sm-4 ">
                                         <div className="mb-3">
                                             <label className="form-label">Category</label>
-                                        <select value={category} onChange={(e)=>setCategory(e.target.value)}>
-                                            <option value="">Choose Category</option> 
-                                            {
-                                                categories.map((cate)=>(
-                                                    <option key={cate} value={cate}>{cate}</option>
-                                                ))
-                                            }
+                                            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                                                <option value="">Choose Category</option>
+                                                {
+                                                    categories.map((cate) => (
+                                                        <option key={cate} value={cate}>{cate}</option>
+                                                    ))
+                                                }
 
-                                        </select>
-                                           
+                                            </select>
+
                                         </div>
                                     </div>
 
@@ -241,7 +246,7 @@ const updateProductImagesChange = (e) => {
                                             />
                                         </div>
                                     </div>
-                                            
+
                                     <div className="col-sm-4 ">
                                         <div className="mb-3">
                                             <label className="form-label">Size</label>
@@ -256,7 +261,7 @@ const updateProductImagesChange = (e) => {
                                         </div>
                                     </div>
 
-                                
+
                                     <div className="col-sm-4 ">
                                         <div className="mb-3">
                                             <label className="form-label">Image</label>
@@ -264,8 +269,8 @@ const updateProductImagesChange = (e) => {
                                             <input
                                                 type="file" className="form-control inputtext"
                                                 placeholder="Choose the image"
-                                                
-                                                
+
+
                                                 accept="image/*"
                                                 onChange={updateProductImagesChange}
                                                 multiple
@@ -274,17 +279,17 @@ const updateProductImagesChange = (e) => {
                                     </div>
 
                                     <div id="createProductFormImage">
-              {oldImages &&
-                oldImages.map((image, index) => (
-                  <img key={index} src={image.url} alt="Old Product Preview" />
-                ))}
-            </div>
+                                        {oldImages &&
+                                            oldImages.map((image, index) => (
+                                                <img key={index} src={image.url} alt="Old Product Preview" />
+                                            ))}
+                                    </div>
 
                                     <div className="col-sm-4 ">
                                         <div className="mb-3">
                                             {
-                                                imagesPreview.map((image,index)=>(
-                                                    <img key={index} src={image} alt="Image"/>
+                                                imagesPreview.map((image, index) => (
+                                                    <img key={index} src={image} alt="Image" />
                                                 ))
                                             }
                                         </div>

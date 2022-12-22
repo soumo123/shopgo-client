@@ -41,7 +41,7 @@ const ProcessOrder = () => {
     //   dispatch(clearErrors());
     // }
     if (isUpdated) {
-      toast.success("Order Updated Successfully");
+      toast.success(`Order ${status} Successfully`);
       dispatch({ type: UPDATE_ORDER_RESET });
     }
 
@@ -188,12 +188,14 @@ const ProcessOrder = () => {
                   </form>
                   <ToastContainer
                   position="top-center"
-                  autoClose={2000}
+                  autoClose={1000}
                   hideProgressBar={false}
                   newestOnTop={false}
-
-
-                />
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover />
 
 
                 </div>

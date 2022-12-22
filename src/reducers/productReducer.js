@@ -199,7 +199,7 @@ export const deleteProductAdminReducer = (state = {}, action) => {
 
             case UPDATE_PRODUCT_SUCCESS:
                 return{
-                    ...state,
+                    // ...state,
                     loading:false,
                     isUpdated: action.payload
                 }
@@ -212,18 +212,22 @@ export const deleteProductAdminReducer = (state = {}, action) => {
 
             case UPDATE_PRODUCT_RESET:
                 return{
-                    ...state,
-                    isUpdated:false
+                  loading:false
                 }
 
 
         case DELETE_PRODUCT_FAIL:
-            case UPDATE_PRODUCT_FAIL:
             return{
-                ...state,
                 loading:false,
                 error:action.payload
             }
+
+            case UPDATE_PRODUCT_FAIL:
+              return{
+                loading:false,
+                isUpdated:action.payload
+            }
+
             case CLEAR_ERRORS:
 
                 return {
