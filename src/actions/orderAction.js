@@ -139,6 +139,7 @@ export const updateOrder = (id,order) => async (dispatch) => {
         }
 
         const { data } = await axios.put(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/admin/order/${id}/${token}`, order, config)
+        console.log("updatee",data)
         dispatch({ type: UPDATE_ORDER_SUCCESS, payload: data.success })
     } catch (error) {
         dispatch({ type: UPDATE_ORDER_FAIL, payload: error.response.data.message })
@@ -178,6 +179,7 @@ try {
     }
 
     const mesage = await axios.post(`/api/soummya/message`, {to:to,name:name},config)
+    console.log("mesage",mesage)
    
 } catch (error) {
     console.log(error)

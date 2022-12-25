@@ -11,7 +11,7 @@ const OrderDetails = () => {
     const dispatch = useDispatch()
     const paramsId = useParams()
     const { order, error, loading } = useSelector((state) => state.orderDetails);
-
+console.log("orderstatus",order?.orderStatus)
     useEffect(() => {
         if (error) {
             alert(error)
@@ -96,7 +96,7 @@ const OrderDetails = () => {
 
                                         <h4 className="mb-4">Payment</h4>
                                         <p className={
-                                            order.paymentInfo && order.paymentInfo.status === "succeeded" ? "green" : "red"
+                                            order?.paymentInfo && order?.paymentInfo.status === "succeeded" ? "green" : "orange"
                                         }>
                                             {
                                                 order.paymentInfo && order.paymentInfo.status === "succeeded" ? "PAID" : "NOT PAID"
@@ -110,8 +110,8 @@ const OrderDetails = () => {
                                         </div>
                                         <div>
                                             <b><p>Order Status</p></b>
-                                            <p className={order.orderStatus && order.orderStatus === "Delivered" ? "green" : "red"}>
-                                                {order.orderStatus && order.orderStatus}
+                                            <p className={order?.orderStatus && order?.orderStatus === "Delivered" ? "green" : "blue"}>
+                                                {order?.orderStatus && order?.orderStatus}
 
                                             </p>
         
