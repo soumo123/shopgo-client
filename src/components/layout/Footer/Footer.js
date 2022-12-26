@@ -36,8 +36,8 @@ const Footer = () => {
 <h5 className="headin5_amrc col_white_amrc pt2">Follow Us</h5>
 
 <ul className="footer_ul_amrc">
-<p><a to="http://webenlance.com"><i className="fa fa-facebook-official me-2" aria-hidden="true"></i>shopgo.com</a></p>
-<p><a to="www.instagram.com/shopgo.co.in?r=nametag"><i className="fa fa-instagram me-2" aria-hidden="true"></i>shopgo</a></p>
+<p><a href="https://www.facebook.com/soummya.biswas.7" target="_blank" className="text-white"><i className="fa fa-facebook-official me-2" aria-hidden="true"></i>shopgo.com</a></p>
+<p><a href="https://www.instagram.com/shopgo.co.in" target="_blank" className="text-white"><i className="fa fa-instagram me-2" aria-hidden="true"></i>shopgo</a></p>
 </ul>
 
 </div>

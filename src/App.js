@@ -61,9 +61,9 @@ useEffect(() => {
 
 
 const {isAuthenticated,user} = useSelector((state)=>state.user)  
+console.log("isAuthenticated",isAuthenticated)
 const {order} = useSelector((state)=>state.newOrder)
 
-console.log(order && order.success)
 
   return (
     

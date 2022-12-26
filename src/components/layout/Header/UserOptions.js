@@ -52,8 +52,9 @@ const UserOptions = () => {
 
 
                 <ul className="dropdown-menu">
-                  <li><Link className="dropdown-item" to="/login" >Login</Link></li>
-                  <li><Link className="dropdown-item" to="/cart" >Cart</Link><p>{cartItems.length} items</p></li>
+                  <li><Link className="dropdown-item" to="/login" ><i class="fa fa-sign-in" aria-hidden="true"></i>Login</Link></li>
+                  <li><Link className="dropdown-item item-count" to="/cart" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        Cart <span>{cartItems.length}</span> </Link></li>
                 </ul>
               </li>
             </Nav.Link>

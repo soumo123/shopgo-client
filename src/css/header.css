@@ -2,3 +2,6 @@
     font-family: 'Pacifico', cursive;
     color:rgb(192, 189, 23)
   }
+  .dropdown-menu[data-bs-popper] {
+    left: -47% !important;
+}
