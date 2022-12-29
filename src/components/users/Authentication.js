@@ -85,6 +85,10 @@ useEffect(() => {
     toast.success("Registration Succesfull ");
     navigate('/login')
   }
+  if(isRegistered==false){
+    toast.error(error);
+    navigate('/login')
+  }
 
   }, [dispatch,toast,isAuthenticated,navigate,user,isRegistered])
   
@@ -128,7 +132,7 @@ const switchTabs = (e,tab)=>{
                   <input
                     type="email"
                     placeholder="Email"
-                    required
+          
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
                   />
@@ -139,7 +143,7 @@ const switchTabs = (e,tab)=>{
                   <input
                     type="password"
                     placeholder="Password"
-                    required
+           
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                   />

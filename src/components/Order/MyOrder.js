@@ -28,13 +28,13 @@ const MyOrder = () => {
               : "redColor";
           },
         },
-        {
-          field: "itemsQty",
-          headerName: "Items Qty",
-          type: "number",
-          minWidth: 150,
-          flex: 0.3,
-        },
+        // {
+        //   field: "itemsQty",
+        //   headerName: "Items Qty",
+        //   type: "number",
+        //   minWidth: 150,
+        //   flex: 0.3,
+        // },
     
         {
           field: "amount",
@@ -66,7 +66,6 @@ const MyOrder = () => {
     orders &&
     orders.forEach((item, index) => {
       rows.push({
-        itemsQty: item.orderItems.length,
         id: item._id,
         status: item.orderStatus,
         amount: item.totalPrice.toFixed(1),
