@@ -122,8 +122,9 @@ const OrderList = () => {
                 itemsQty: item.orderItems.length,
                 amount: item.totalPrice,
                 status: item.orderStatus,
-                createdAt:item.createdAt.substring(0,10),
-                deliveredAt:item.deliveredAt ? item.deliveredAt.substring(0,10) : "Not Sure"
+                createdAt:new Date(item.createdAt).toLocaleDateString('en-GB'),
+                deliveredAt:new Date(item.deliveredAt).toLocaleDateString('en-GB'),
+              
             });
         });
 

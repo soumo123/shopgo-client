@@ -111,7 +111,7 @@ const deleteProductHandler = (id)=>{
         stock: item.stock,
         price: item.price,
         name: item.name,
-        createdAt:item.createdAt.substring(0, 10)
+        createdAt:new Date(item.createdAt).toLocaleDateString('en-GB')
       });
     });
 

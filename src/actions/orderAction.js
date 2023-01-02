@@ -13,7 +13,7 @@ import {
     DELETE_ORDER_REQUEST,
     DELETE_ORDER_SUCCESS,
     DELETE_ORDER_FAIL,
-    MY_ORDER_FAIL, CLEAR_ERRORS
+    MY_ORDER_FAIL, CLEAR_ERRORS, CANCEL_ORDER_REQUEST, CANCEL_ORDER_SUCCESS, CANCEL_ORDER_FAIL
 } from '../constants/orderConstant'
 import axios from 'axios'
 //New order
@@ -188,6 +188,33 @@ try {
 }
 
 
+
+
+//Cancel Order////////////////////////////////
+export const cancelOrder = (order,id) => async (dispatch) => {
+
+console.log("id..........",order , id)
+    try {
+        const token = localStorage.getItem('token')
+        dispatch({ type: CANCEL_ORDER_REQUEST })
+
+        const config = {
+            headers: {
+                'Content-Type': "application/json",
+                // 'Accept':"/"
+            },
+            withCredentials: true
+        }
+
+        const { data } = await axios.post(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/cancel/${token}/${id}`, {reason:order}, config)
+        dispatch({ type: CANCEL_ORDER_SUCCESS, payload: data })
+
+
+    } catch (error) {
+        dispatch({ type: CANCEL_ORDER_FAIL, payload: error.response.data.message })
+    }
+
+}
 
 
 

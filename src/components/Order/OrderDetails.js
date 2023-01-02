@@ -1,24 +1,53 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { getProclearErrors, getOrderDetails } from "../../actions/orderAction";
+import { getProclearErrors, getOrderDetails, cancelOrder } from "../../actions/orderAction";
 import Loader from "../layout/loader/Loader";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Metadata from '../layout/Metadata'
 import DispatchDetails from './DispatchDetails';
+import { useAlert } from 'react-alert'
 import '../../css/orderdetails.css'
+import { CANCEL_ORDER_CONSTANT } from '../../constants/orderConstant';
 
 const OrderDetails = () => {
     const dispatch = useDispatch()
+    const alert = useAlert()
+    const navigate = useNavigate()
     const paramsId = useParams()
+    console.log("paramsId", paramsId.id)
+    const [reason, setReason] = useState("")
+
+
+
     const { order, error, loading } = useSelector((state) => state.orderDetails);
-console.log("orderstatus",order?.orderStatus)
+    const { success } = useSelector((state) => state.cancelOrder);
+
+
+    console.log("success", success)
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log("reasonn", reason)
+        dispatch(cancelOrder(reason, paramsId.id))
+    }
+
+
+
     useEffect(() => {
         if (error) {
-            alert(error)
+            alert.error(error)
             dispatch(getProclearErrors())
         }
+        if (success) {
+            navigate("/order")
+            alert.success("Order Deleted")
+            dispatch({type:CANCEL_ORDER_CONSTANT})
+
+        }
+
         dispatch(getOrderDetails(paramsId.id))
-    }, [dispatch, error, alert, paramsId.id])
+    }, [dispatch, error, alert, success, paramsId.id])
 
 
 
@@ -114,19 +143,59 @@ console.log("orderstatus",order?.orderStatus)
                                                 {order?.orderStatus && order?.orderStatus}
 
                                             </p>
-        
+
                                             <p >Delivery Date :<span className="deliverydate"> {order?.deliveredAt?.substring(0, 10)}</span></p>
 
+                                            <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title fs-5" id="exampleModalToggleLabel">Cancel Order</h3>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are You Sure To Cancel the Order ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Yes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Reason</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form encType="multipart/form-data">
+
+                                                                <input
+                                                                    type="text"
+                                                                    placeholder="Reason"
+                                                                    required
+                                                                    value={reason}
+                                                                    onChange={(e) => setReason(e.target.value)}
+                                                                />
+
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={handleSubmit}>Submit</button>
+    
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Cancel</button>
                                         </div>
+
                                     </div>
-                                </div> </div>
-
-
-
-
-
-
-
+                                </div>
+                            </div>
                         </div>
 
 
