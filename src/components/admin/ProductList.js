@@ -109,7 +109,7 @@ const deleteProductHandler = (id)=>{
       rows.push({
         id: item._id,
         stock: item.stock,
-        price: item.price,
+        price: `₹`+item.price,
         name: item.name,
         createdAt:new Date(item.createdAt).toLocaleDateString('en-GB')
       });

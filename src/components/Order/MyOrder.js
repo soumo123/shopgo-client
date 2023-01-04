@@ -68,7 +68,7 @@ const MyOrder = () => {
       rows.push({
         id: item._id,
         status: item.orderStatus,
-        amount: item.totalPrice.toFixed(1),
+        amount: `₹`+item.totalPrice.toFixed(1),
       });
     });
 

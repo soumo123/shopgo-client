@@ -20,9 +20,12 @@ const ConfirmOrder = () => {
 const subtotal = cartItems.reduce((acc,item)=>acc + item.quantity * item.price,0)
 
 
-const shippingCharges = subtotal > 500 ? 50 : 0
+// const shippingCharges = subtotal > 500 ? 50 : 0
+ const shippingCharges = 0
 
-const tax = 10
+
+// const tax = 10
+const tax = 0
 const totalPrice = subtotal + shippingCharges + tax
 
 const address = `${shippingInfo.address},${shippingInfo.city},${shippingInfo.state}${shippingInfo.pinCode},${shippingInfo.country}`

@@ -42,7 +42,7 @@ const OrderDetails = () => {
         if (success) {
             navigate("/order")
             alert.success("Order Deleted")
-            dispatch({type:CANCEL_ORDER_CONSTANT})
+            dispatch({ type: CANCEL_ORDER_CONSTANT })
 
         }
 
@@ -54,146 +54,131 @@ const OrderDetails = () => {
 
     return (
         <>
+
             {
                 loading ? <Loader /> :
                     <>
                         <DispatchDetails />
                         <Metadata title="Order Details" />
-                        <div className="container">
+                        <div className="container-fluid ">
 
-                            <div className="row mt-5 mb-5 justify-content-center">
-                                <div className="col-sm-3">
-                                    <ul className="detail-image">
-                                        {order.orderItems &&
-                                            order.orderItems.map((item) => (
+                            <div className="row mt-5 mb-5">
 
 
+                                <div className="col-sm-9">
 
-                                                <li>
-                                                    <Link to={`/product/${item.product}`}>
-                                                        <div key={item.product}>
-                                                            <img className="img-fluid" src={item.image} alt="Product" />
-                                                        </div>
-                                                    </Link>
-                                                </li>
+                                    <div class="table-responsive table-hover check-table">
+                                        <table class="table">
 
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col">Product Name</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Total</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {order.orderItems &&
+                                                    order.orderItems.map((item) => (
+                                                        <tr>
+                                                            <th scope="row">
+                                                                <div class="check-img">
+                                                                    <img className="img-fluid" src={item.image} alt="Product" /></div>
+                                                            </th>
+                                                            <td>{item.name}</td>
+                                                            <td>{item.quantity}</td>
+                                                            <td>{item.price}</td>
+                                                            <td>₹{(item.price * item.quantity)}</td>
+                                                            <td className={
+                                                                order?.paymentInfo && order?.paymentInfo.status === "succeeded" ? "text-success" : "text-danger"
+                                                            }>
 
-
-                                            ))}
-                                    </ul>
-
-                                </div>
-
-                                <div className="col-sm-5">
-                                    <div className="order-details">
-                                        <h4 className="mb-4">Order Items</h4>
-                                        <p>Shipping Info</p>
-                                        <p>Name : <span>{order.user && order.user.name}</span></p>
-                                        <p>Phone : <span>{order.shippingInfo && order.shippingInfo.phoneNo}</span></p>
-                                        <p>Address : <span>{order.shippingInfo && `${order.shippingInfo.address},${order.shippingInfo.city},${order.shippingInfo.state}${order.shippingInfo.pinCode},${order.shippingInfo.country}`}</span></p>
-
-
-
-                                        {
-                                            order?.orderItems?.map((item) => (
-                                                <div>
-                                                    <p>Item :  <span>{item.name}</span></p>
-                                                    <p>{item.quantity} X ₹{item.price} ={" "}
-                                                        <b>₹{(item.price * item.quantity)}</b></p>
-
-                                                </div>
-
-                                            ))
-                                        }
+                                                                {
+                                                                    order.paymentInfo && order.paymentInfo.status === "succeeded" ? "PAID" : "NOT PAID"
+                                                                }
+                                                            </td>
 
 
 
-
-                                        <div>
-
+                                                        </tr>
 
 
-                                        </div>
 
+                                                    ))}
+
+
+                                            </tbody>
+                                        </table>
                                     </div>
-
                                 </div>
 
                                 <div className="col-sm-3">
+                                    <h6 className="mb-4">Payment</h6>
+                                    <div className="order-total">
+                                        <p >Delivery Date :<span className=""> {new Date(order?.deliveredAt).toLocaleDateString('en-GB')}</span></p>
+                                        <p >Total Order :<span className="totalprice">₹{order.totalPrice && order.totalPrice} </span></p>
 
-                                    <div className="order-details">
-
-                                        <h4 className="mb-4">Payment</h4>
-                                        <p className={
-                                            order?.paymentInfo && order?.paymentInfo.status === "succeeded" ? "green" : "orange"
-                                        }>
-                                            {
-                                                order.paymentInfo && order.paymentInfo.status === "succeeded" ? "PAID" : "NOT PAID"
-                                            }
-
-                                        </p>
-
-                                        <div>
-                                            <p>Total Price :<span>₹{order.totalPrice && order.totalPrice} </span></p>
-
-                                        </div>
-                                        <div>
-                                            <b><p>Order Status</p></b>
-                                            <p className={order?.orderStatus && order?.orderStatus === "Delivered" ? "green" : "blue"}>
-                                                {order?.orderStatus && order?.orderStatus}
-
-                                            </p>
-
-                                            <p >Delivery Date :<span className="deliverydate"> {order?.deliveredAt?.substring(0, 10)}</span></p>
-
-                                            <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h3 class="modal-title fs-5" id="exampleModalToggleLabel">Cancel Order</h3>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            Are You Sure To Cancel the Order ?
-                                                        </div>
-                                                        <div class="modal-footer">
+                                        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title fs-5" id="exampleModalToggleLabel">Cancel Order</h3>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are You Sure To Cancel the Order ?
+                                                    </div>
+                                                    <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Yes</button>
-                                                        </div>
+                                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Yes</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Reason</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form encType="multipart/form-data">
+                                        </div>
+                                        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Reason</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form encType="multipart/form-data">
 
-                                                                <input
-                                                                    type="text"
-                                                                    placeholder="Reason"
-                                                                    required
-                                                                    value={reason}
-                                                                    onChange={(e) => setReason(e.target.value)}
-                                                                />
+                                                            <input
+                                                                type="text"
+                                                                placeholder="Reason"
+                                                                required
+                                                                value={reason}
+                                                                onChange={(e) => setReason(e.target.value)}
+                                                            />
 
-                                                            </form>
-                                                        </div>
-                                                        <div class="modal-footer">
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
                                                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={handleSubmit}>Submit</button>
-    
-                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Cancel</button>
                                         </div>
 
+                                        <button className="btn btn-primary" disabled={order?.paymentInfo && order?.paymentInfo.status === "succeeded" ? true : false} data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Cancel</button>
                                     </div>
+
+                                    <div className="order-details mt-4">
+                                        <h6>Shipping Address</h6>
+                                        <ul className="details-list">
+                                            <li>Name : <span>{order.user && order.user.name}</span></li>
+                                            <li>Phone : <span>+91 {order.shippingInfo && order.shippingInfo.phoneNo}</span></li>
+                                            <li>Address : <span>{order.shippingInfo && `${order.shippingInfo.address},${order.shippingInfo.city},${order.shippingInfo.state}${order.shippingInfo.pinCode},${order.shippingInfo.country}`}</span></li>
+                                        </ul>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -204,6 +189,8 @@ const OrderDetails = () => {
 
                     </>
             }
+
+
 
 
         </>

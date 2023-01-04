@@ -64,7 +64,7 @@ const Cart = () => {
             <div className="row">
               <div className="noitemcart">
 
-                <h1>No Items in Cart</h1><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <h1>No Items in Cart</h1><i className="fa fa-shopping-cart" aria-hidden="true"></i>
 
               </div>
 
@@ -72,63 +72,63 @@ const Cart = () => {
 
           </div>
           : <div className="App">
-            <section class="section-content padding-y">
-              <div class="container">
+            <section className="section-content padding-y">
+              <div className="container">
 
-                <div class="row">
-                  <main class="col-md-12">
-                    <div class="card">
+                <div className="row">
+                  <main className="col-md-12">
+                    <div className="card">
                       {
                         cartItems && cartItems.map((item) => (
                           <div>
-                          <table class="table table-borderless table-shopping-cart">
-                            <thead class="text-muted">
-                              <tr class="small text-uppercase">
+                          <table className="table table-borderless table-shopping-cart">
+                            <thead className="text-muted">
+                              <tr className="small text-uppercase">
                                 <th scope="col">Product</th>
                                 <th scope="col" width="">Quantity</th>
                                 <th scope="col" width="">Price</th>
                                 <th scope="col" width="">Total</th>
 
-                                <th scope="col" class="text-right" width=""> </th>
+                                <th scope="col" className="text-right" width=""> </th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
 
                                 <td>
-                                  <figure class="itemside">
-                                    <div class="aside"><img src={item.image} class="img-sm" /></div>
-                                    <figcaption class="info">
-                                      <a href="#" class="title text-dark">{item.name}</a>
+                                  <figure className="itemside">
+                                    <div className="aside"><img src={item.image} className="img-sm" /></div>
+                                    <figcaption className="info">
+                                      <a href="#" className="title text-dark">{item.name}</a>
                                 
                                 
-                                      {/* <p class="text-muted small">Size: XL, Color: blue, <br /> Brand: Gucci</p> */}
+                                      {/* <p className="text-muted small">Size: XL, Color: blue, <br /> Brand: Gucci</p> */}
                                     </figcaption>
                                   </figure>
                                 </td>
                                 <td>
                                   <form>
-                                    <div class="value-button" id="decrease" onClick={() => decreaseQuantity(item.product, item.quantity)}>-</div>
+                                    <div className="value-button" id="decrease" onClick={() => decreaseQuantity(item.product, item.quantity)}>-</div>
                                     <input type="number" id="number" value={item.quantity} readonly />
-                                    <div class="value-button" id="increase" onClick={() => increaseQuantity(item.product, item.quantity, item.stock)} value="Increase Value">+</div>
+                                    <div className="value-button" id="increase" onClick={() => increaseQuantity(item.product, item.quantity, item.stock)} value="Increase Value">+</div>
                                   </form>
                                 </td>
                                 <td>
-                                  <div class="price-wrap">
-                                    <var class="price">₹{item.price.toFixed(1)}</var>
+                                  <div className="price-wrap">
+                                    <var className="price">₹{item.price.toFixed(1)}</var>
 
                                   </div>
                                 </td>
 
                                 <td>
-                                  <div class="price-wrap">
-                                    <var class="price">₹{(item.price * item.quantity).toFixed(1)}</var>
+                                  <div className="price-wrap">
+                                    <var className="price">₹{(item.price * item.quantity).toFixed(1)}</var>
 
                                   </div>
                                 </td>
-                                <td class="text-right">
-                                  <div data-original-title="Save to Wishlist" title="" href="" class="btn btn-light mr-2" data-toggle="tooltip"> <i className="fa fa-trash"></i></div>
-                                  <button class="btn btn-light" onClick={() => deleteCartItems(item.product)}> Remove</button>
+                                <td className="text-right">
+                                  <div data-original-title="Save to Wishlist" title="" href="" className="btn btn-light mr-2" data-toggle="tooltip"> <i className="fa fa-trash"></i></div>
+                                  <button className="btn btn-light" onClick={() => deleteCartItems(item.product)}> Remove</button>
                                 </td>
                               </tr>
                               
@@ -140,26 +140,26 @@ const Cart = () => {
                         ))}
 
 
-                      <div class="card-body border-top d-sm-flex align-items-center justify-content-between">
+                      <div className="card-body border-top d-sm-flex align-items-center justify-content-between">
   
-                       <div class="">
-                        <Link to="/products"><i class="fa fa-chevron-left"></i> Continue shopping </Link>
+                       <div className="">
+                        <Link to="/products"><i className="fa fa-chevron-left"></i> Continue shopping </Link>
                         </div>
 
-                       <div class="">
+                       <div className="">
                            <b><p>Total Order : <span>{`₹${cartItems.reduce(
                                       (acc, item) => acc + item.quantity * item.price,
                                       0
                                     )}`}</span></p></b>
                         </div>
-                        <div class="">
-                        <button class="btn btn-primary float-md-right" onClick={checkoutHandler}> Make Purchase <i class="fa fa-chevron-right"></i> </button>
+                        <div className="">
+                        <button className="btn btn-primary float-md-right" onClick={checkoutHandler}> Make Purchase <i className="fa fa-chevron-right"></i> </button>
                        </div>
                         </div>
                     </div>
 
-                    <div class="alert alert-success mt-3">
-                      <p class="icontext"><i class="icon text-success fa fa-truck"></i> Fast Delivery within 1 week</p>
+                    <div className="alert alert-success mt-3">
+                      <p className="icontext"><i className="icon text-success fa fa-truck"></i> Fast Delivery within 3-4 Days</p>
                     </div>
 
                   </main>
