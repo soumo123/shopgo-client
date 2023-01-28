@@ -7,16 +7,17 @@ import '../../css/responsive.css';
 import '../../css/ui.css'
 import './cart.css'
 import '../../css/button.css'
-
+import { useAlert } from 'react-alert'
 
 import Metadata from '../layout/Metadata'
 
 const Cart = () => {
 
+  const alert = useAlert()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { cartItems } = useSelector((state) => state.cart)
-
+  const {isAuthenticated,user} = useSelector((state)=>state.user)
 
   const increaseQuantity = (id, quantity, stock) => {
 
@@ -47,8 +48,15 @@ const Cart = () => {
   }
 
   const checkoutHandler = () => {
-    navigate("/shipping")
+    if(isAuthenticated){
+      navigate("/shipping")
+    }else{
+        alert.error("Please Login First")
+    }
+    
   }
+
+
 
 
 
@@ -128,7 +136,7 @@ const Cart = () => {
                                 </td>
                                 <td className="text-right">
                                   <div data-original-title="Save to Wishlist" title="" href="" className="btn btn-light mr-2" data-toggle="tooltip"> <i className="fa fa-trash"></i></div>
-                                  <button className="btn btn-light" onClick={() => deleteCartItems(item.product)}> Remove</button>
+                                  <button className="btn btn-warning" onClick={() => deleteCartItems(item.product)}> Remove</button>
                                 </td>
                               </tr>
                               

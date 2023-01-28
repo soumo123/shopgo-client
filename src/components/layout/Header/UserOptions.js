@@ -84,6 +84,8 @@ const UserOptions = () => {
                         Dashboard</Link></li>
                       <li><Link className="dropdown-item item-count" to="/cart" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         Cart <span>{cartItems.length}</span> </Link></li>
+                        {/* <li><Link className="dropdown-item item-count" to="/dashboard/points" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        Points <span>{1}</span> </Link></li> */}
                       <li><p className="dropdown-item" onClick={logout} ><i class="fa fa-sign-out" aria-hidden="true"></i>
                         Logout</p></li>
 
@@ -93,6 +95,8 @@ const UserOptions = () => {
                       <li><Link className="dropdown-item" to="/order">Orders</Link></li>
                       <li><Link className="dropdown-item item-count" to="/cart" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         Cart <span>{cartItems.length}</span> </Link></li>
+                        {/* <li><Link className="dropdown-item item-count" to="/dashboard/points" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        Points <span>{1}</span> </Link></li> */}
                       <li ><p className="dropdown-item" onClick={logout} >Logout</p></li>
 
                     </ul>
