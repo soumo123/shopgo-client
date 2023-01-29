@@ -249,7 +249,7 @@ const createProductImagesChange = (e) => {
                                             <input
                                                 type="number" className="form-control inputtext"
                                                 placeholder="Delivery Days"
-                                                value={size}
+                                                value={deliveryDays}
                                                 onChange={(e) => setDeliveryDays(e.target.value)}
                                                 size="10"
                                             />
