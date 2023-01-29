@@ -25,7 +25,7 @@ const[imagesPreview,setImagesPreview] = useState([])
 const[category,setCategory] = useState("")
 const[color,setColor] = useState("")
 const[size,setSize] = useState("")
-
+const [deliveryDays,setDeliveryDays] = useState("")
 
 
 const categories = [
@@ -76,6 +76,7 @@ const categories = [
     myForm.set("category",category)
     myForm.set("color",color)
     myForm.set("size",size)
+    myForm.set("deliveryDays",deliveryDays)
     images.forEach((image)=>{
         myForm.append("images",image)
     })
@@ -241,7 +242,19 @@ const createProductImagesChange = (e) => {
                                     </div>
 
 
+                                    <div className="col-sm-4 ">
+                                        <div className="mb-3">
+                                            <label className="form-label">Delivery Days</label>
 
+                                            <input
+                                                type="number" className="form-control inputtext"
+                                                placeholder="Delivery Days"
+                                                value={size}
+                                                onChange={(e) => setDeliveryDays(e.target.value)}
+                                                size="10"
+                                            />
+                                        </div>
+                                    </div>
 
 
 

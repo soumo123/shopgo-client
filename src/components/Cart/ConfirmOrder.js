@@ -9,6 +9,7 @@ import { createOrder,sendMail } from '../../actions/orderAction'
 import '../../css/confirmorder.css'
 
 const ConfirmOrder = () => {
+  let dealers = []
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { cartItems, shippingInfo } = useSelector((state) => state.cart)
@@ -19,6 +20,12 @@ const ConfirmOrder = () => {
 
 const subtotal = cartItems.reduce((acc,item)=>acc + item.quantity * item.price,0)
 
+cartItems.map((ele)=>{
+  dealers.push(ele.user)
+})
+
+dealers =  [...new Set(dealers)];
+console.log("dealers",dealers)
 
 // const shippingCharges = subtotal > 500 ? 50 : 0
  const shippingCharges = 0
@@ -57,8 +64,8 @@ const order = {
   paymentInfo:{
     id:user._id,
     status:"Processing"
-  }
-
+  },
+  dealers:dealers
 }
 
 const codPayement = (e)=>{
