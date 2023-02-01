@@ -6,12 +6,16 @@ import axios from 'axios'
 export const addItemsToCart = (id, quantity) => async (dispatch,getState) => {
 
     const { data } = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/product/${id}`)
-   
+    let d = new Date();
+    let delivered = d.setDate(d.getDate() + Number(data.product.deliveryDays));
+    const deliveredAt = new Date(delivered).toISOString().substring(0, 10);
+
     dispatch({
         type: ADD_TO_CART,
         payload:{
             product:data.product._id,
             user:data.product.user,
+            deliveryTime:deliveredAt,
             name:data.product.name,
             price:data.product.actualpricebydiscount,
             stock:data.product.stock,

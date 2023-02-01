@@ -177,6 +177,7 @@ useEffect(() => {
 						  <div>      
               </div>
 						</div>
+            <p>Delivery within {product?.deliveryDays} Days</p>
             <div className="description-box">
               <h5 className="description">Description</h5>
             <p>{description}</p>
