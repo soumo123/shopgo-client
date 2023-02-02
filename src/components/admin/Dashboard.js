@@ -38,7 +38,7 @@ products && products.map((item)=>{
 
 
 useEffect(() => {
-  dispatch(getAdminProducts());
+  dispatch(getAdminProducts(""));
   dispatch(getAllOrders())
   dispatch(getAllUsers())
 }, [dispatch]);

@@ -135,14 +135,14 @@ export const createProduct = (productData) => async (dispatch) => {
 
 
 //get products by admin
-export const getAdminProducts = () => async (dispatch) => {
+export const getAdminProducts = (name) => async (dispatch) => {
 
     try {
 
         const token = localStorage.getItem('token')
         dispatch({type:ADMIN_PRODUCT_REQUEST})
 
-        const {data} = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/admin/products/${token}`)
+        const {data} = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/admin/products/${token}?name=${name}`)
       
         dispatch({type:ADMIN_PRODUCT_SUCCESS,payload:data.products})
 

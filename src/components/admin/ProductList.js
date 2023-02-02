@@ -16,6 +16,7 @@ const ProductList = () => {
   const alert = useAlert()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const[searchData,setSearchData] = useState("")
   const {error,products} = useSelector((state) => state.products)
   const{isDeleted} = useSelector((state) => state.productAdmin)
 
@@ -27,19 +28,22 @@ const deleteProductHandler = (id)=>{
 
   }
 
+console.log("searchData",searchData)
+
+
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(getProclearErrors());
     }
-    dispatch(getAdminProducts());
-
+    
+    dispatch(getAdminProducts(searchData));
     if(isDeleted){
       alert.success("Product Deleted Succesfully")
       dispatch({type:DELETE_PRODUCT_RESET})
       // navigate("/admin/dashboard");
     }
-  }, [error,alert,dispatch,navigate,isDeleted]);
+  }, [error,alert,dispatch,navigate,isDeleted,searchData]);
   
 
  
@@ -125,6 +129,15 @@ const deleteProductHandler = (id)=>{
       <div className="row display-table-row">
   <Sidebar/>
   <div className="productListContainer">
+  <div className="input-group">
+  <div class="form-outline">
+    <input type="search" id="form1" class="form-control"  onChange= {(e)=>setSearchData(e.target.value)}/>
+    <label className="form-label" for="form1">Search</label>
+  </div>
+  <button type="button" className="btn btn-primary">
+    <i class="fas fa-search"></i>
+  </button>
+</div>
     <h1 id="productListHeading">ALL PRODUCTS</h1>
 
     <DataGrid

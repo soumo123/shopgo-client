@@ -18,6 +18,7 @@ const OrderList = () => {
     const dispatch = useDispatch()
     const alert = useAlert()
     const navigate = useNavigate()
+    const[orderData,setOrderData] = useState("")
     const { error, orders } = useSelector((state) => state.allOrders)
     const { isDeleted } = useSelector((state) => state.order)
 
@@ -138,6 +139,15 @@ const OrderList = () => {
                 <div className="row display-table-row">
                     <Sidebar />
                     <div className="productListContainer">
+                    <div className="input-group">
+  <div class="form-outline">
+    <input type="search" id="form1" class="form-control"  onChange= {(e)=>setOrderData(e.target.value)}/>
+    <label className="form-label" for="form1">Search</label>
+  </div>
+  <button type="button" className="btn btn-primary">
+    <i class="fas fa-search"></i>
+  </button>
+</div>
                         <h1 id="productListHeading">ALL PRODUCTS</h1>
 
                         <DataGrid
