@@ -5,6 +5,7 @@ import {
     REGISTER_USER_REQUEST,
     REGISTER_USER_SUCCESS,
     REGISTER_USER_FAIL,
+    REGISTER_USER_RESET,
     LOAD_USER_REQUEST,
     LOAD_USER_SUCCESS,
     LOAD_USER_FAIL,
@@ -121,7 +122,10 @@ export const userReducer = (state = { user: {} }, action) => {
                 user: null,
                 error: action.payload
             }
-
+        case REGISTER_USER_RESET :
+            return {
+                ...state
+            }
     
         case CLEAR_ERRORS:
             return {

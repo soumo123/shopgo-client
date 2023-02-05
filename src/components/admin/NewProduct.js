@@ -7,7 +7,7 @@ import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Metadata from '../layout/Metadata'
-
+import '../../css/error.css'
 
 const NewProduct = () => {
 
@@ -26,6 +26,9 @@ const[category,setCategory] = useState("")
 const[color,setColor] = useState("")
 const[size,setSize] = useState("")
 const [deliveryDays,setDeliveryDays] = useState("")
+const[productsearch,setProductsearch] = useState("")
+const[formerror,setFormerror] = useState({})
+
 
 
 const categories = [
@@ -64,24 +67,74 @@ const categories = [
   }, [dispatch,alert,navigate,toast,success,error])
   
 
+const validateForm = ()=>{
+ let err = {}
+let flag= false
+ if(name.length<3){
+    err.name = "Product name should be greater than 3"
+ }
+ if(description.length>5000){
+    err.name = "Description should be less than 5000 words"
+ }
+ if(category.length==0){
+    err.category = "Category not selected"
+ }
+ if(stock<0){
+    err.stock = "Stock not less than 0"
+ }
+ if(discount<0){
+    err.discount = "Discount not less than 0 "
+ }
+ if(deliveryDays<0){
+    err.deliveryDays = "Delivery Days not less than 0"
+ }
+ if(imagesPreview.length <=0){
+    err.imagesPreview = "Image not selected"
+ }
+
+setFormerror({...err,err})
+console.log("err")
+if(Object.keys(err).length==0){
+    flag= true
+}else{
+    flag= false
+}
+
+return flag
+
+
+}
+
 
   const createProductSubmitHandler = (e)=>{
     e.preventDefault()
-    const myForm = new FormData()
-    myForm.set("name",name)
-    myForm.set("price",price)
-    myForm.set("description",description)
-    myForm.set("stock",stock)
-    myForm.set("discount",discount)
-    myForm.set("category",category)
-    myForm.set("color",color)
-    myForm.set("size",size)
-    myForm.set("deliveryDays",deliveryDays)
-    images.forEach((image)=>{
-        myForm.append("images",image)
-    })
+   
 
-    dispatch(createProduct(myForm))
+    let isValid = validateForm()
+    console.log("flag",isValid)
+    
+    if(isValid){
+        const myForm = new FormData()
+        myForm.set("name",name)
+        myForm.set("price",price)
+        myForm.set("description",description)
+        myForm.set("stock",stock)
+        myForm.set("discount",discount)
+        myForm.set("category",category)
+        myForm.set("color",color)
+        myForm.set("size",size)
+        myForm.set("deliveryDays",deliveryDays)
+        myForm.set("productsearch",name+category)
+        images.forEach((image)=>{
+            myForm.append("images",image)
+        })
+        console.log("comming here")
+        dispatch(createProduct(myForm))
+    }else{
+        console.log("isValid - comming here",isValid)
+        toast.error("Check the Fields")
+    }
+   
 }
 
 
@@ -137,6 +190,7 @@ const createProductImagesChange = (e) => {
                                                 value={name}
                                                 onChange={(e) => setName(e.target.value)}
                                             />
+                                            <span className="error-color">{formerror.name}</span>
                                         </div>
                                     </div>
 
@@ -165,6 +219,7 @@ const createProductImagesChange = (e) => {
                                                 value={description}
                                                 onChange={(e) => setDescription(e.target.value)}
                                             ></textarea>
+                                            <span className="error-color">{formerror.description}</span>
                                         </div>
                                     </div>
 
@@ -180,8 +235,10 @@ const createProductImagesChange = (e) => {
                                             }
 
                                         </select>
+                                        
                                            
                                         </div>
+                                        <span className="error-color">{formerror.category}</span>
                                     </div>
 
                                     <div className="col-sm-4 ">
@@ -196,6 +253,7 @@ const createProductImagesChange = (e) => {
                                                 onChange={(e) => setStock(e.target.value)}
                                                 size="10"
                                             />
+                                            <span className="error-color">{formerror.stock}</span>
                                         </div>
                                     </div>
 
@@ -211,6 +269,8 @@ const createProductImagesChange = (e) => {
                                                 onChange={(e) => setDiscount(e.target.value)}
                                                 size="10"
                                             />
+                                            <span className="error-color">{formerror.discount}</span>
+
                                         </div>
                                     </div>
                                     <div className="col-sm-4 ">
@@ -253,6 +313,8 @@ const createProductImagesChange = (e) => {
                                                 onChange={(e) => setDeliveryDays(e.target.value)}
                                                 size="10"
                                             />
+                                            <span className="error-color">{formerror.deliveryDays}</span>
+
                                         </div>
                                     </div>
 
@@ -273,6 +335,8 @@ const createProductImagesChange = (e) => {
                                                 onChange={createProductImagesChange}
                                                 multiple
                                             />
+                                            <span className="error-color">{formerror.imagesPreview}</span>
+
                                         </div>
                                     </div>
 

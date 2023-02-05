@@ -3,6 +3,7 @@ import '../../../css/contact.css'
 const Contact = () => {
   return (
    <>
+  
     <div className="container left-side">
     <div className="row content mt-5 mb-5">
         <div className="col-sm-4 address details">
