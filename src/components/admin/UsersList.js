@@ -122,8 +122,14 @@ const UsersList = () => {
         <SideBar/>
 <div className="dashboard">
  
+<div className="user d-xl-block d-lg-block d-sm-block">
+<input type="search" id="form2" class="form-control" placeholder='Search..' />
+<button type="button" className="btn btn-primary" style={{position:'absolute',left:'88%',top:'12.5%'}}>
+    <i class="fas fa-search"></i>
+  </button>
+</div>
   <div className="productListContainer">
-    <h1 id="productListHeading">ALL USERS</h1>
+    <h1 id="productListHeading" className="bg-light text-info" style={{textAlign:'center'}}>ALL USERS </h1>
 
     <DataGrid
       rows={rows}

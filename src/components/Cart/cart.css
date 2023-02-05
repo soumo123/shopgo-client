@@ -210,10 +210,10 @@ ul {
     border-radius: 55px;
 }
 
-.cart_button_clear:hover {
+/* .cart_button_clear:hover {
     border-color: #0e8ce4;
     color: #0e8ce4
-}
+} */
 
 .cart_button_checkout {
     display: inline-block;
@@ -228,10 +228,10 @@ ul {
     cursor: pointer;
     vertical-align: top;
     border-radius: 55px;
+    border: 1px solid rgb(15, 180, 15);
+    color: rgb(5, 163, 5);
+    background-color: #fff;
 }
-
-
-
 
 .cart-box{
     background-color: #e1e1e1;

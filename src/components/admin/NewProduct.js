@@ -172,7 +172,7 @@ const createProductImagesChange = (e) => {
                     <div className="col-lg-12">
 
                         <div className="formdiv">
-                            <h1>Add New Product</h1>
+                            <h1 className='bg-light text-info'>Add New Product</h1>
                             <form className="form"
                                 encType="multipart/form-data"
                                 onSubmit={createProductSubmitHandler}
@@ -358,7 +358,7 @@ const createProductImagesChange = (e) => {
                                             <input
                                                 type="submit"
                                                 value="Continue"
-                                                className="button cart_button_checkout"
+                                                className="button cart_button_checkout  btn btn-outline-success"
                                                 disabled={loading ? true : false}
                                             />
                                         </div>
