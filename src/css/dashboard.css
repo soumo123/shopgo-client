@@ -35,6 +35,42 @@
     flex: 1;
 }
 
+#form1{
+    display:flex;
+   align-items: center;
+    justify-content:right;
+     border-radius:5px;
+     text-align:center;
+     border: 1px solid rgb(55, 55, 59);
+     transition: all 0.2s ease;
+     width: 13rem;
+     height: 2.3rem;
+     position: absolute;
+     left: 70%;
+    top: 7px;
+}
+#form1::placeholder{
+    text-align: center;
+padding-top: 0;
+}
+#form2{
+    display:flex;
+    align-items: center;
+     justify-content:right;
+      border-radius:5px;
+      text-align:center;
+      border: 1px solid rgb(55, 55, 59);
+      transition: all 0.2s ease;
+      width: 13rem;
+      height: 2.3rem;
+      position: absolute;
+      left: 73.3%;
+    top: 12.7%;
+}
+#form2::placeholder{
+    text-align: center;
+padding-top: 0;
+}
 .number{
     flex: 1;
 }

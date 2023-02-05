@@ -135,8 +135,8 @@ const Cart = () => {
                                   </div>
                                 </td>
                                 <td className="text-right">
-                                  <div data-original-title="Save to Wishlist" title="" href="" className="btn btn-light mr-2" data-toggle="tooltip"> <i className="fa fa-trash"></i></div>
-                                  <button className="btn btn-warning" onClick={() => deleteCartItems(item.product)}> Remove</button>
+                                  <div data-original-title="Save to Wishlist" title="" href="" data-toggle="tooltip"></div>
+                                  <button className="btn btn-outline-danger" onClick={() => deleteCartItems(item.product)}> Remove</button>
                                 </td>
                               </tr>
                               

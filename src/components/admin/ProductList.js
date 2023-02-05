@@ -131,14 +131,14 @@ console.log("searchData",searchData)
   <div className="productListContainer">
   <div className="input-group">
   <div class="form-outline">
-    <input type="search" id="form1" class="form-control"  onChange= {(e)=>setSearchData(e.target.value)}/>
-    <label className="form-label" for="form1">Search</label>
+    <input type="search" id="form1" class="form-control" placeholder='search..' onChange= {(e)=>setSearchData(e.target.value)}/>
+    {/* <label className="form-label" for="form1">Search Products..</label> */}
   </div>
-  <button type="button" className="btn btn-primary">
-    <i class="fas fa-search"></i>
+  <button type="button" className="btn btn-primary" style={{position:'absolute',left:'88%',top:'5px'}}>
+    <i class="fas fa-search" ></i>
   </button>
 </div>
-    <h1 id="productListHeading">ALL PRODUCTS</h1>
+    <h1 id="productListHeading"  className="bg-light text-info" style={{textAlign:'center'}}>ALL PRODUCTS</h1>
 
     <DataGrid
       rows={rows}

@@ -236,15 +236,14 @@ useEffect(() => {
 
 
             <div className="d-sm-flex">
-               <div className=""><p> Status : </p></div>
+               <div className=""><h5>Status :</h5></div>
                 <div className=""> {
               stock < 1 ? <p className="ms-3" style={{color:"red"}}>Out Of stck</p> : 
-              <p  className="ms-3" style={{color:"green"}}>In Stock</p>
+              <p  className="ms-3" style={{color:"green"}}><b> In Stock</b></p>
             }</div>
 
-
             </div>
-            <button onClick={submitReviewToggle}>Submit Review</button>
+            <button onClick={submitReviewToggle} className='btn btn-dark' style={{marginTop:'20px'}}>Add Review</button>
 
             <Dialog
             aria-labelledby="simple-dialog-title"

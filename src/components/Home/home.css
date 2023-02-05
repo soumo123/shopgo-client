@@ -3,6 +3,68 @@
      
 }
 
+/* search bar code start */
+.search__box{
+    display:flex;
+   align-items:center;
+    justify-content:center;
+     border-radius:5px;
+     text-align:center;
+     border: 1px solid rgb(55, 55, 59);
+     transition: all 0.2s ease;
+     width: 11rem;
+     height: 2.3rem;
+}
+
+/* .search__box:hover::placeholder { 
+   background-color: rgb(63, 63, 241);
+color: #fff; */
+
+
+::placeholder{
+    color: blue;
+    transition: all 0.2s ease;
+    width: 11rem;
+    height: 2.3rem;
+    position: absolute;
+text-align: center;
+padding-top: 3px;
+}
+.search__box:focus{
+    color: rgb(32, 85, 247);
+ 
+}
+.container_search{
+    display:flex;
+     align-items:center;
+      justify-content: center ;
+    padding-left:30px;
+}
+
+
+/* serach bar code end */
+
+
+
+/* navbar active class code  start*/
+ 
+
+  /* Darker background on mouse-over */
+  /* .bttn:hover {
+    background-color: rgb(156, 169, 212);
+    outline: none;
+    color: white; 
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   border-radius: 5px;
+  } */
+
+
+/* navbar active class code end */
+
 
 .carousel-caption {
     position: absolute;
