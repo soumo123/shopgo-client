@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { useSelector, useDispatch} from "react-redux";
 import { Link ,useNavigate} from "react-router-dom";
@@ -15,6 +15,9 @@ const UsersList = () => {
   const alert = useAlert()
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  const[searchData,setSearchData] = useState("")
+
+  console.log("search",searchData)
   const { error, users } = useSelector((state) => state.allUsers);
   const {
     isDeleted,
@@ -37,15 +40,15 @@ const UsersList = () => {
     //   alert.error(deleteError);
     //   dispatch(clearErrors());
     // }
-
+dispatch(getAllUsers(searchData));
     if (isDeleted) {
       alert.success(message);
       navigate("/admin/users");
       dispatch({ type: DELETE_USER_RESET });
     }
 
-    dispatch(getAllUsers());
-  }, [dispatch, alert, isDeleted, message]);
+    
+  }, [dispatch, alert, isDeleted, message,searchData]);
 
   const columns = [
     { field: "id", headerName: "User ID", minWidth: 180, flex: 0.8 },
@@ -123,7 +126,7 @@ const UsersList = () => {
 <div className="dashboard">
  
 <div className="user d-xl-block d-lg-block d-sm-block">
-<input type="search" id="form2" class="form-control" placeholder='Search..' />
+<input type="search" id="form2" class="form-control" placeholder='Search..' onChange= {(e)=>setSearchData(e.target.value)}/>
 <button type="button" className="btn btn-primary" style={{position:'absolute',left:'88%',top:'12.5%'}}>
     <i class="fas fa-search"></i>
   </button>

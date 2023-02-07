@@ -203,12 +203,12 @@ export const forgotPassword = (email) => async (dispatch) => {
 
 //get all users
 
-export const getAllUsers = () => async (dispatch) => {
+export const getAllUsers = (key) => async (dispatch) => {
 
     try {
         dispatch({ type:  ALL_USER_REQUEST })
         const token = localStorage.getItem('token')
-        const { data } = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/admin/users/${token}`)
+        const { data } = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/admin/users/${token}?name=${key}`)
        
         dispatch({ type: ALL_USER_SUCCESS, payload: data.users })
     } catch (error) {

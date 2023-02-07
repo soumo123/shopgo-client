@@ -6,7 +6,7 @@
 /* search bar code start */
 .search__box{
     display:flex;
-   align-items:center;
+    align-items:center;
     justify-content:center;
      border-radius:5px;
      text-align:center;
@@ -22,7 +22,7 @@ color: #fff; */
 
 
 ::placeholder{
-    color: blue;
+    /* color: blue; */
     transition: all 0.2s ease;
     width: 11rem;
     height: 2.3rem;
@@ -31,7 +31,7 @@ text-align: center;
 padding-top: 3px;
 }
 .search__box:focus{
-    color: rgb(32, 85, 247);
+    /* color: rgb(32, 85, 247); */
  
 }
 .container_search{
