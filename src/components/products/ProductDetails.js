@@ -213,14 +213,14 @@ useEffect(() => {
 }
 
 
-            <div className="d-sm-flex mt-3 mb-3">
+            <div className="d-sm-flex mt-3 mb-3 align-items-center">
               <div className="qunty-box">
                   <Button variant="btn-qty" onClick={quantityIncrease}> + </Button>{' '}
                   <input type="number" class="inputtext" readonly value={quantity}/>
                   <Button variant="btn-qty" onClick={quantityDecrease}> - </Button>{' '}
               </div>
               <div className="">
-							<button className="btn add-to-cart" type="button" disabled={stock < 1 ? true : false} onClick={addToCartHandler}>add to cart</button>
+							<button className="btn add-to-cart btn-primary" type="button" disabled={stock < 1 ? true : false} onClick={addToCartHandler}>add to cart</button>
 							</div>
             </div>
             
@@ -229,7 +229,7 @@ useEffect(() => {
 						<div className="mt-4 mb-4 d-sm-flex align-items-center">
              
               <div className="">              
-              <button onClick={(e)=>increaseLike(e.target.value)} className="like btn btn-default " type="button"><span className="fa fa-heart">{likes}</span></button>
+              <button onClick={(e)=>increaseLike(e.target.value)} className="btn btn-light" type="button"><span className="fa fa-heart">{likes}</span></button>
               </div>
             </div>
 

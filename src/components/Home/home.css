@@ -14,6 +14,7 @@
      transition: all 0.2s ease;
      width: 11rem;
      height: 2.3rem;
+     border-radius: 34px;
 }
 
 /* .search__box:hover::placeholder { 
@@ -24,11 +25,9 @@ color: #fff; */
 ::placeholder{
     /* color: blue; */
     transition: all 0.2s ease;
-    width: 11rem;
-    height: 2.3rem;
-    position: absolute;
+   
 text-align: center;
-padding-top: 3px;
+
 }
 .search__box:focus{
     /* color: rgb(32, 85, 247); */

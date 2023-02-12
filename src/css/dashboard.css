@@ -3,6 +3,10 @@
     text-align: center,
     
 }
+
+body{
+    background-color: #f7fcff !important
+}
 .productbox{
     background: #ebeded;
     padding: 22px;
