@@ -5,7 +5,7 @@
 
 /* search bar code start */
 .search__box{
-    display:flex;
+    /* display:flex; */
     align-items:center;
     justify-content:center;
      border-radius:5px;

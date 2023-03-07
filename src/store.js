@@ -5,7 +5,7 @@ import {productDetailsReducer,productReducer,newReviewReducer,newProductReducer,
 import {userReducer,profileReducer,forgotPasswordReducer,allUsersReducer,userDetailsReducer, verifyOtpReducer} from './reducers/userReducer'
 import {cartReducer} from './reducers/cartReducer'
 import {globalReducer} from './reducers/globalReducer'
-import { newOrderReducer,myOrderReducer,orderDetailsReducer,allOrdersReducer,orderReducer, cancelOrderReducer } from './reducers/orderReducer'
+import { newOrderReducer,myOrderReducer,orderDetailsReducer,allOrdersReducer,orderReducer, cancelOrderReducer, statusOrderReducer } from './reducers/orderReducer'
 const reducer = combineReducers({
     products: productReducer,
     product : productDetailsReducer,
@@ -30,7 +30,8 @@ const reducer = combineReducers({
     likeableProducts:likebleProductReducers,
     globalReducer:globalReducer,
     verifyOtp:verifyOtpReducer,
-    cancelOrder:cancelOrderReducer
+    cancelOrder:cancelOrderReducer,
+    statusCheck:statusOrderReducer
 })
 
 let initialState ={

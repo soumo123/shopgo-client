@@ -34,6 +34,7 @@ const ProductDetails = () => {
   const { name , description , price , actualpricebydiscount,discount,size ,color,loading, images  ,stock ,numOfReviews, reviews,likes} = product
 
   const{isLiked,error:errorforLike} = useSelector((state) => state.dealProduct)
+  const { user } = useSelector((state) => state.user)
 
 
 const dispatch = useDispatch()
@@ -77,7 +78,7 @@ const increaseLike = (e)=>{
 
 
 const addToCartHandler = ()=>{
-  dispatch(addItemsToCart(productId,quantity))
+  dispatch(addItemsToCart(productId,quantity,user))
   alert.success('Item Added Succesfully ')
 }
 

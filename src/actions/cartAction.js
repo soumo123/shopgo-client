@@ -1,18 +1,21 @@
 import { ADD_TO_CART ,REMOVE_CART_ITEM,SAVE_SHIPPING_INFO} from '../constants/cartConstants'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 
 //Add To Cart
-export const addItemsToCart = (id, quantity) => async (dispatch,getState) => {
+
+
+export const addItemsToCart = (id, quantity,user) => async (dispatch,getState) => {
 
     const { data } = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/product/${id}`)
     let d = new Date();
     let delivered = d.setDate(d.getDate() + Number(data.product.deliveryDays));
-    const deliveredAt = new Date(delivered).toISOString().substring(0, 10);
-
+    const deliveredAt = new Date(delivered).toISOString();
     dispatch({
         type: ADD_TO_CART,
         payload:{
+            customer_name:user.name,
             product:data.product._id,
             user:data.product.user,
             deliveryTime:deliveredAt,

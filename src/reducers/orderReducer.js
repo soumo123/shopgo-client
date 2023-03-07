@@ -23,7 +23,10 @@ import {
     CANCEL_ORDER_REQUEST,
     CANCEL_ORDER_SUCCESS,
     CANCEL_ORDER_FAIL,
-    CANCEL_ORDER_CONSTANT
+    CANCEL_ORDER_CONSTANT,
+    STATUS_ORDER_REQUEST,
+    STATUS_ORDER_SUCCESS,
+    STATUS_ORDER_FAIL
 
 } from '../constants/orderConstant'
 
@@ -219,6 +222,36 @@ export const cancelOrderReducer = (state = {}, action) => {
             }
 
         case CANCEL_ORDER_FAIL:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state
+    }
+
+}
+
+
+
+
+export const statusOrderReducer = (state = {}, action) => {
+
+    switch (action.type) {
+
+        case STATUS_ORDER_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case STATUS_ORDER_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+                data:action.payload.data.paymentData
+            }
+
+        case STATUS_ORDER_FAIL:
             return {
                 ...state,
                 error: null

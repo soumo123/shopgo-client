@@ -22,6 +22,8 @@ const UserOptions = () => {
 
     localStorage.removeItem("token")
     localStorage.removeItem("profile")
+    localStorage.removeItem("cartItems")
+
     toast.success("Logout Succesfully ");
     navigate('/products')
 

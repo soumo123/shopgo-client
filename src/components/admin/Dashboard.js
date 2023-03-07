@@ -36,7 +36,6 @@ products && products.map((item)=>{
   }
 })
 
-
 useEffect(() => {
   dispatch(getAdminProducts(""));
   dispatch(getAllOrders())

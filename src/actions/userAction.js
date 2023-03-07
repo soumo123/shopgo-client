@@ -169,7 +169,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
         }
         const link  = `${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/password/update/${token}`
         const { data } = await axios.put(link,passwords,config)
-       
+       console.log("errorssss",data)
         dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: UPDATE_PASSWORD_FAIL, payload: error.response.data.message })

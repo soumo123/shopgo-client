@@ -13,12 +13,14 @@ import {
     DELETE_ORDER_REQUEST,
     DELETE_ORDER_SUCCESS,
     DELETE_ORDER_FAIL,
-    MY_ORDER_FAIL, CLEAR_ERRORS, CANCEL_ORDER_REQUEST, CANCEL_ORDER_SUCCESS, CANCEL_ORDER_FAIL
+    MY_ORDER_FAIL, CLEAR_ERRORS, CANCEL_ORDER_REQUEST, CANCEL_ORDER_SUCCESS, CANCEL_ORDER_FAIL,
+    STATUS_ORDER_REQUEST,
+    STATUS_ORDER_SUCCESS,
+    STATUS_ORDER_FAIL
 } from '../constants/orderConstant'
 import axios from 'axios'
 //New order
 
-//Add To Cart
 export const createOrder = (order) => async (dispatch, getState) => {
 
 
@@ -217,6 +219,29 @@ console.log("id..........",order , id)
 }
 
 
+
+
+
+
+
+// shipment check //  ----------------
+
+export const shipmentDetails = (order_id) => async (dispatch) => {
+
+        try {
+            console.log(order_id,"order_id")
+            const token = localStorage.getItem('token')
+            dispatch({ type: STATUS_ORDER_REQUEST })
+
+            const  data  = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/shipment-status/${token}?order_id=${order_id}`)
+            dispatch({ type: STATUS_ORDER_SUCCESS, payload: data })
+    
+    
+        } catch (error) {
+            dispatch({ type: STATUS_ORDER_FAIL, payload: error.response.data.message })
+        }
+    
+    }
 
 
 

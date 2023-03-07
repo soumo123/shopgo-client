@@ -41,14 +41,16 @@ const Header = () => {
               <div class="container_search">
 
 
-                
 
 
 
 
-                <input type="text" id="box" placeholder="Search Products" className="search__box" onChange={(e) => setKeyword(e.target.value)} />
-  
-     <button type="button" className="btn btn-dark" style={{marginLeft:'5px', size:"small"}} onClick={submitHandler}><i className="fa fa-search"></i></button>
+
+                <form onSubmit={submitHandler}>
+
+                  <input type="text" id="box" placeholder="Search Products" className="search__box" onChange={(e) => setKeyword(e.target.value)} />
+                  <i className="fa fa-search"></i>
+                </form>
               </div>
             </Nav>
             <UserOptions />
