@@ -49,7 +49,7 @@ const Header = () => {
                 <form onSubmit={submitHandler}>
 
                   <input type="text" id="box" placeholder="Search Products" className="search__box" onChange={(e) => setKeyword(e.target.value)} />
-                  <i className="fa fa-search"></i>
+                  <i className="fa fa-search ml-3"></i>
                 </form>
               </div>
             </Nav>

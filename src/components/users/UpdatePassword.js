@@ -26,7 +26,7 @@ const UpdatePassword = () => {
     const [newPassword, setNewPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [formerror, setFormerror] = useState({})
-	let match = ""
+    let match = ""
 
 
     const validateForm = () => {
@@ -36,15 +36,15 @@ const UpdatePassword = () => {
             err.newPassword = "New Password is missing"
             err.confirmPassword = "Confirm Password is missing"
         }
-				if (newPassword.length ===0) {
-					err.newPassword = "New Password is missing"
-			}
-			if (confirmPassword.length ===0) {
-				err.confirmPassword = "Confirm Password is missing"
-		}	if(newPassword !== confirmPassword){
-			err.match = "Passwords not match"
-		}
-		
+        if (newPassword.length === 0) {
+            err.newPassword = "New Password is missing"
+        }
+        if (confirmPassword.length === 0) {
+            err.confirmPassword = "Confirm Password is missing"
+        } if (newPassword !== confirmPassword) {
+            err.match = "Passwords not match"
+        }
+
         setFormerror({ ...err, err })
         console.log("err")
         if (Object.keys(err).length == 0) {
@@ -64,13 +64,13 @@ const UpdatePassword = () => {
         console.log("flag", isValid)
 
         if (isValid) {
-				
+
             const myForm = new FormData()
             myForm.set("oldPassword", oldPassword);
             myForm.set("newPassword", newPassword);
             myForm.set("confirmPassword", confirmPassword);
             dispatch(updatePassword(myForm));
-					}
+        }
     }
 
 
@@ -155,7 +155,7 @@ const UpdatePassword = () => {
                                     </div>
 
                                     <div class="card">
-																		<span className="error-color">{formerror.match}</span>
+                                        <span className="error-color">{formerror.match}</span>
                                         <div class="card-body">
                                             <div class="m-sm-4">
                                                 <form onSubmit={updatePasswordSubmit}>
@@ -179,7 +179,7 @@ const UpdatePassword = () => {
                                                             value={newPassword}
                                                             onChange={(e) => setNewPassword(e.target.value)}
                                                         />
-																												<span className="error-color">{formerror.newPassword}</span>
+                                                        <span className="error-color">{formerror.newPassword}</span>
                                                     </div>
                                                     <div class="form-group">
                                                         <label style={{ fontSize: "20px" }}>Confirm Password</label>
@@ -190,7 +190,7 @@ const UpdatePassword = () => {
                                                             value={confirmPassword}
                                                             onChange={(e) => setConfirmPassword(e.target.value)}
                                                         />
-																												<span className="error-color">{formerror.confirmPassword}</span>
+                                                        <span className="error-color">{formerror.confirmPassword}</span>
                                                     </div>
                                                     <div class="text-center mt-3">
 
@@ -198,6 +198,9 @@ const UpdatePassword = () => {
                                                     </div>
                                                 </form>
                                                 <ToastContainer />
+                                                <div className="update">
+                          <Link to="/account">Back</Link>
+                          </div>
                                             </div>
                                         </div>
                                     </div>

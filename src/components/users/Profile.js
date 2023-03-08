@@ -31,9 +31,9 @@ const Profile = () => {
         <span className="profile-card-loc__icon">
         </span>
 
-        <span className="profile-card-loc__txt">
+        {/* <span className="profile-card-loc__txt">
           Role : {user?.role}
-        </span>
+        </span> */}
       </div>
 
       <div className="profile-card-inf">
