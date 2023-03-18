@@ -18,7 +18,7 @@ const ConfirmOrder = () => {
   const { user } = useSelector((state) => state.user)
   const userDetails = localStorage.getItem('profile')
 
-  const subtotal = cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0)
+  const subtotal = cartItems.reduce((acc, item) => (acc + item.quantity * item.price), 0)
 
   cartItems.map((ele) => {
     dealers.push(ele.user)
@@ -57,7 +57,7 @@ const proceedToPayment = () => {
   const order = {
     shippingInfo,
     orderItems: cartItems,
-    itemsPrice: subtotal,
+    itemsPrice: subtotal.toFixed(2),
     taxPrice: tax,
     shippingPrice: shippingCharges,
     totalPrice: totalPrice,
@@ -70,6 +70,7 @@ const proceedToPayment = () => {
 
   const codPayement = (e) => {
     e.preventDefault();
+    console.log("order",order)
     dispatch(createOrder(order));
     navigate("/success")
     dispatch(sendMail(to, user.name))
@@ -125,7 +126,7 @@ const proceedToPayment = () => {
                         <span>
 
 
-                          <b>{item.quantity} x ₹ {item.price.toFixed(1)} = ₹{(item.quantity * item.price).toFixed(1)}</b>
+                          <b>{item.quantity} x ₹ {item.price} = ₹{(item.quantity * item.price).toFixed(2)}</b>
                         </span>
                       </div>
 
@@ -138,10 +139,10 @@ const proceedToPayment = () => {
 
           <div className="col-sm-3">
             <div className="cart-box text-center">
-              <p>Subtotal : ₹{subtotal}</p>
+              <p>Subtotal : ₹{subtotal.toFixed(2)}</p>
               <p>Shipping Charges : ₹{shippingCharges}</p>
               <p>GST : ₹{tax.toFixed(1)}</p>
-              <p>Total :₹ {totalPrice.toFixed(1)}</p>
+              <p>Total :₹ {totalPrice.toFixed(2)}</p>
               {/* <button onClick={proceedToPayment} className="btn add-to-cart mb-2">Proceed To payment</button> */}
               <button onClick={codPayement} className="btn add-to-cart mb-2" >COD Payment </button>
 

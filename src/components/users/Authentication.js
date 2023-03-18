@@ -168,7 +168,10 @@ const Authentication = () => {
       {
         loading ? (<Loader />) : (
 
-          <div className="LoginSignUpContainer">
+          <div className="container">
+                 <div className="row justify-content-center">
+                 <div className="col-sm-6">
+                 <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
               <div>
                 <div className="login_signUp_toggle">
@@ -179,7 +182,7 @@ const Authentication = () => {
               </div>
               <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
                 <div className="loginEmail">
-                  <i className="fa fa-envelope-o" aria-hidden="true"></i>
+                
                   <input
                     type="email"
                     placeholder="Email"
@@ -190,7 +193,7 @@ const Authentication = () => {
 
                 </div>
                 <div className="loginPassword">
-                  <i className="fa fa-lock" aria-hidden="true"></i>
+                  
 
                   <input
                     type="password"
@@ -201,15 +204,17 @@ const Authentication = () => {
                   />
                 </div>
 
-                <input type="submit" value="Login" className="loginBtn" />
-                <div className="row">
-                  <div className="col-lg-12 text-center">
+              <div className="form-group">
+                <input type="submit" value="Login" className="btn btn-primary" />
+                </div>
+                <div className="form-group">
+                 
                     {/* <div className="phoneiocn">
                 <i class="fa fa-mobile" aria-hidden="true"></i>
                 </div> */}
-                    <Link to="/otp/verification" className="btn btn-primary btn-sm otpbtn">
+                    <Link to="/otp/verification" className="otpbtn btn">
                       Login With Number</Link>
-                  </div>
+               
                 </div>
 
               </form>
@@ -233,7 +238,7 @@ const Authentication = () => {
                 onSubmit={registerSubmit}
               >
                 <div className="signUpName">
-                  <i className="fa fa-user" aria-hidden="true"></i>
+                 
                   <input
                     type="text"
                     placeholder="Name"
@@ -246,7 +251,7 @@ const Authentication = () => {
                 </div>
 
                 <div className="signUpName">
-                  <i className="fa fa-user" aria-hidden="true"></i>
+                
                   <input
                     type="number"
                     placeholder="Phone Number"
@@ -265,7 +270,7 @@ const Authentication = () => {
 
 
                 <div className="signUpEmail">
-                  <i className="fa fa-envelope-o" aria-hidden="true"></i>
+                 
                   <input
                     type="email"
                     placeholder="Email"
@@ -277,7 +282,7 @@ const Authentication = () => {
 
                 </div>
                 <div className="signUpPassword">
-                  <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                
                   <input
                     type="password"
                     placeholder="Password"
@@ -290,7 +295,7 @@ const Authentication = () => {
 
                 </div>
 
-                <div id="registerImage">
+                <div id="registerImage" className="text-center">
                   <img src={avatarPreview} alt="Avatar Preview" />
                   <input
                     type="file"
@@ -299,12 +304,19 @@ const Authentication = () => {
                     onChange={registerDataChange}
                   />
                   {/* <span className="error-color">{formerror.avatar}</span> */}
-
+                <p>Image Should Less Than 1MB</p>
                 </div>
-                <input type="submit" value="Register" className="signUpBtn" />
+                <div className="form-group">
+                <input type="submit" value="Register" className="btn btn-primary" />
+                </div>
               </form>
             </div>
           </div>
+                </div>
+                </div>
+          </div>
+
+         
 
 
 

@@ -1,21 +1,26 @@
 .LoginSignUpContainer {
-    width: 100vw;
+    /* width: 100vw;
     height: 100vh;
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
+    max-width: 100%; */
+    /* display: flex;
+    justify-content: center; */
     align-items: center;
-    background-color: rgb(231, 231, 231);
-    position: fixed;
+    /* background-color: rgb(231, 231, 231); */
+    /* position: fixed;
     top: 0%;
-    left: 0;
+    left: 0; */
     z-index: 99;
+    margin-top: 12%;
+    margin-bottom: 12%;
+    /* background: #ebebeb; */
+    padding: 12%;
+    
   }
   
   .LoginSignUpBox {
-    background-color: white;
-    width: 25vw;
-    height: 70vh;
+   
+    /* width: 25vw;
+    height: 70vh; */
     box-sizing: border-box;
     overflow: hidden;
   }
@@ -24,8 +29,8 @@
     height: 3vmax;
   }
   .login_signUp_toggle > p {
-    color: rgba(0, 0, 0, 0.678);
-    font: 300 1vmax "Roboto";
+    color: #545252;
+    font: 400 1.3vmax "Roboto";
     transition: all 0.5s;
     cursor: pointer;
     display: grid;
@@ -37,8 +42,8 @@
   }
   
   .LoginSignUpBox > div > button {
-    background-color: tomato;
-    height: 3px;
+    background-color: #545252;
+    height: 2px;
     width: 50%;
     border: none;
     transition: all 0.5s;
@@ -46,13 +51,15 @@
   
   .loginForm,
   .signUpForm {
-    display: flex;
+    background: #efefef;
+    padding: 12px;  
+    /* display: flex;
     flex-direction: column;
     align-items: center;
     margin: auto;
     padding: 2vmax;
     justify-content: space-evenly;
-    height: 70%;
+    height: 70%; */
     transition: all 0.5s;
   }
   
@@ -62,20 +69,22 @@
   
   .loginForm > div,
   .signUpForm > div {
-    display: flex;
+    /* display: flex; */
     width: 100%;
     align-items: center;
   }
   .loginForm > div > input,
   .signUpForm > div > input {
     padding: 1vmax 4vmax;
-    padding-right: 1vmax;
+    /* padding-right: 1vmax; */
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.267);
+    border: 0;
     border-radius: 4px;
-    font: 300 0.9vmax cursive;
+    /* font: 300 0.9vmax roboto; */
     outline: none;
+    margin: 9px 0;
+    height: 50px;
   }
   
   .loginForm > div > svg,
@@ -146,14 +155,19 @@
   }
   
   .shiftToLeft {
-    transform: translateX(-100%);
+    transform: translateX(-105%);
   }
   .shiftToNeutral {
     transform: translateX(0%);
   }
   
   .shiftToNeutralForm {
-    transform: translateX(0%) translateY(-100%);
+    transform: translateX(0%) translateY(-45%);
+  }
+
+  #registerImage p{
+    font-size: 12px;
+    font-weight: 600;
   }
   
   .shiftToRight {
@@ -254,3 +268,35 @@
   text-align: center;
 margin-top: 5px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

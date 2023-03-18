@@ -26,9 +26,13 @@ const Cart = () => {
     if (stock <= quantity) {
       return
     }
-    dispatch(addItemsToCart(id, newqty))
+    dispatch(addItemsToCart(id,newqty,user))
   }
 
+  const total = cartItems.reduce(
+    (acc, item) => (acc + item.quantity * item.price),
+    0
+  )
 
 
 
@@ -39,7 +43,7 @@ const Cart = () => {
     if (1 >= quantity) {
       return
     }
-    dispatch(addItemsToCart(id, newqty))
+    dispatch(addItemsToCart(id, newqty,user))
   }
 
 
@@ -123,14 +127,14 @@ const Cart = () => {
                                 </td>
                                 <td>
                                   <div className="price-wrap">
-                                    <var className="price">₹{item.price.toFixed(1)}</var>
+                                    <var className="price">₹{item.price}</var>
 
                                   </div>
                                 </td>
 
                                 <td>
                                   <div className="price-wrap">
-                                    <var className="price">₹{(item.price * item.quantity).toFixed(1)}</var>
+                                    <var className="price">₹{(item.price * item.quantity).toFixed(2)}</var>
 
                                   </div>
                                 </td>
@@ -155,10 +159,7 @@ const Cart = () => {
                         </div>
 
                        <div className="">
-                           <b><p>Total Order : <span>{`₹${cartItems.reduce(
-                                      (acc, item) => acc + item.quantity * item.price,
-                                      0
-                                    )}`}</span></p></b>
+                           <b><p>Total Order : <span>₹{total.toFixed(2)}</span></p></b>
                         </div>
                         <div className="">
                         <button className="btn btn-primary float-md-right" onClick={checkoutHandler}> Make Purchase <i className="fa fa-chevron-right"></i> </button>

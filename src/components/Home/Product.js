@@ -13,7 +13,7 @@ const Product = ({ product }) => {
   
   const options = {
     size: "large",
-    value: product?.ratings,
+    value: product?.ratings==0 ? 3 : product?.ratings,
     readOnly: true,
     precision: 0.5
 
