@@ -51,7 +51,7 @@ ul.details-list li span {
     font-size: 13px;
 }
 
-.stepper{
+.stepper {
     margin-top: 10%;
     margin-left: 5%;
     padding: 2px;
@@ -69,4 +69,21 @@ ul.details-list li span {
 
 
 
+}
+
+.btn-primaryyy {
+    background-color: rgb(129, 184, 184) !important;
+    border-color: #f0f1f5;
+    box-shadow: none !important;
+    border-color: white !important;
+    margin-top: 26px;
+    border-radius: 27px;
+}
+
+
+
+
+
+.stepper {
+    font-weight: 700;
 }

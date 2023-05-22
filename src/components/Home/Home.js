@@ -48,8 +48,8 @@ const Home = () => {
 
 
   const breakPoints = [
-    { width: 1, itemsToShow: 2},
-    { width: 550, itemsToShow: 2},
+    { width: 1, itemsToShow: 2 },
+    { width: 550, itemsToShow: 2 },
     { width: 768, itemsToShow: 5 },
     { width: 1200, itemsToShow: 5 }
   ];
@@ -112,25 +112,26 @@ const Home = () => {
               <Carousel.Item>
 
 
-<img
-  className="d-block w-100 "
-  src={BannerImg3}
-  alt="Third slide"
-/>
-</Carousel.Item>
+                <img
+                  className="d-block w-100 "
+                  src={BannerImg3}
+                  alt="Third slide"
+                />
+              </Carousel.Item>
 
 
 
-<Carousel.Item>
+              <Carousel.Item>
 
 
-<img
-  className="d-block w-100 "
-  src={BannerImg5}
-  alt="Third slide"
-/>
-</Carousel.Item>
+                <img
+                  className="d-block w-100 "
+                  src={BannerImg5}
+                  alt="Third slide"
+                />
+              </Carousel.Item>
             </Carousel>
+            {/* <img src={BannerImg} alt=""/> */}
           </Link>
           <section className="products">
             <div className="container">
@@ -157,7 +158,7 @@ const Home = () => {
             <div className="carao">
               <div className="container">
                 <div className="row">
-                  <div className="col-sm-12 mb-3 mt-3">
+                  <div className="col-sm-12 mb-3 mt-3" >
                     <h1>Todays Deal</h1>
                   </div>
 
@@ -165,34 +166,34 @@ const Home = () => {
               </div>
               <div className="container-fluid">
                 <div className="row">
-                  <div className="col-sm-12">
-              <Carousels breakPoints={breakPoints}>
+                  <div className="col-sm-12" >
+                    <Carousels breakPoints={breakPoints}>
 
-                {
-                  product && product.map((element) => (
-
-
-                    <Item>
-                      <Link className="" to={`/product/${element._id}`}>
-                        <div className="slider-img">
-                          <img className="img-fluid" src={element.images[0].url} />
-                          <div className="discount">
-                            <p className="dis">Upto {element.discount}%</p>
-                          </div>
-                        </div>
-
-                      </Link>
-
-                    </Item>
+                      {
+                        product && product.map((element) => (
 
 
+                          <Item>
+                            <Link className="" to={`/product/${element._id}`}>
+                              <div className="slider-img">
+                                <img className="img-fluid" src={element.images[0].url} />
+                                <div className="discount">
+                                  <p className="dis">Upto {element.discount}%</p>
+                                </div>
+                              </div>
 
-                  ))
-                }
+                            </Link>
 
-              </Carousels>
-              </div>
-              </div>
+                          </Item>
+
+
+
+                        ))
+                      }
+
+                    </Carousels>
+                  </div>
+                </div>
               </div>
 
 
@@ -200,11 +201,11 @@ const Home = () => {
 
             </div>
             <div className="container-fluid">
-                <div className="row">
-                  <div className="col-sm-12">
-            <LikeableProducts />
-            </div>
-            </div>
+              <div className="row">
+                <div className="col-sm-12" >
+                  <LikeableProducts />
+                </div>
+              </div>
             </div>
           </section>
         </>

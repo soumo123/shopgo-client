@@ -23,7 +23,7 @@ import { Rating } from "@material-ui/lab";
 import { useAlert } from 'react-alert'
 import '../../Responsive.css'
 import env from "react-dotenv";
-
+import ImageMagnify from '../../custom/ImageMagnify'
 const ProductDetails = () => {
 
 
@@ -182,13 +182,13 @@ const ProductDetails = () => {
               <div className="tab-pane active" id="pic-1">
                 <Metadata title={`${product.name}`} />
                 <Carousel>
-
+               
 
                   {
 
                     images && images.map((item, i) => (
                       <Carousel.Item>
-
+                      {/* <ImageMagnify src={item.url}/> */}
                         <img key={item.url} src={item.url} alt={`${i} Slide`} />
                       </Carousel.Item>
 
@@ -209,7 +209,10 @@ const ProductDetails = () => {
                 <div>
                 </div>
               </div>
-              <p>Delivery within {product?.deliveryDays} Days</p>
+              <div>
+              <i class="fa fa-truck" aria-hidden="true"></i><p className="delivery">Delivery within {product?.deliveryDays} Days</p>
+
+              </div>
               <div className="description-box">
                 <h5 className="description">Description</h5>
                 <p>{description}</p>
@@ -252,7 +255,7 @@ const ProductDetails = () => {
                   <Button variant="btn-qty" onClick={quantityDecrease}> - </Button>{' '}
                 </div>
                 <div className="">
-                  <button className="btn add-to-cart btn-primary" type="button" disabled={stock < 1 ? true : false} onClick={addToCartHandler}>add to cart</button>
+                  <button className="btn add-to-cart " type="button" disabled={stock < 1 ? true : false} onClick={addToCartHandler}>Add</button>
                 </div>
               </div>
 
@@ -261,7 +264,7 @@ const ProductDetails = () => {
               <div className="mt-4 mb-4 d-sm-flex align-items-center">
 
                 <div className="">
-                  <button onClick={(e) => increaseLike(e.target.value)} className="btn btn-light" type="button"><span className="fa fa-heart">{likes}</span></button>
+                  <button onClick={(e) => increaseLike(e.target.value)} className="btn btn-light btnn" type="button"><span className="fa fa-heart likes">{" "}{likes}</span></button>
                 </div>
               </div>
 
@@ -299,12 +302,12 @@ const ProductDetails = () => {
                   ></textarea>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={submitReviewToggle} color="secondary">
+                  <button className="btn add-to-cart " type="button" onClick={submitReviewToggle} >
                     Cancel
-                  </Button>
-                  <Button onClick={reviewSubmitHandler} color="primary">
+                  </button>
+                  <button className="btn add-to-cart " type="button"onClick={reviewSubmitHandler} >
                     Submit
-                  </Button>
+                  </button>
                 </DialogActions>
               </Dialog>
             </div>

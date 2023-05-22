@@ -114,7 +114,7 @@ const OrderDetails = () => {
                               <td>{item.price}</td>
                               <td>₹{(item.price * item.quantity)}</td>
 
-                              <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => trackOrder(item._id)}>
+                              <button type="button" className="btn btn-primaryyy" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => trackOrder(item._id)}>
                                 Tracking
                               </button>
                               <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -147,8 +147,8 @@ const OrderDetails = () => {
 
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
+                                      <button type="button" className="btn-primary" style={{borderRadius:"27px"}} data-bs-dismiss="modal">Close</button>
+                                      <button type="button" className="btn-primary" style={{borderRadius:"27px"}} data-bs-dismiss="modal">Okay</button>
                                     </div>
                                   </div>
                                 </div>
@@ -183,8 +183,8 @@ const OrderDetails = () => {
                             Are You Sure To Cancel the Order ?
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Yes</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style={{borderRadius:"27px"}}>Close</button>
+                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" style={{borderRadius:"27px"}}>Yes</button>
                           </div>
                         </div>
                       </div>
@@ -217,7 +217,7 @@ const OrderDetails = () => {
                       </div>
                     </div>
 
-                    <button className="btn btn-primary" disabled={order?.paymentInfo && order?.paymentInfo.status === "succeeded" ? true : false} data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Cancel</button>
+                    <button className="btn btn-primary" style={{borderRadius:"27px"}} disabled={order?.paymentInfo && order?.paymentInfo.status === "succeeded" ? true : false} data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Cancel</button>
                   </div>
 
                   <div className="order-details mt-4">
@@ -225,7 +225,7 @@ const OrderDetails = () => {
                     <ul className="details-list">
                       <li>Name : <span>{order.user && order.user.name}</span></li>
                       <li>Phone : <span>+91 {order.shippingInfo && order.shippingInfo.phoneNo}</span></li>
-                      <li>Address : <span>{order.shippingInfo && `${order.shippingInfo.address},${order.shippingInfo.city},${order.shippingInfo.state}${order.shippingInfo.pinCode},${order.shippingInfo.country}`}</span></li>
+                      <li>Address : <span>{order.shippingInfo && `${order.shippingInfo.address},${order.shippingInfo.city},${order.shippingInfo.state},${order.shippingInfo.pinCode},${order.shippingInfo.country}`}</span></li>
                     </ul>
                   </div>
 

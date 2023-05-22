@@ -1,22 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../../css/user.css'
 import { Link } from 'react-router-dom'
-import {Nav } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { Nav } from 'react-bootstrap'
+import { useSelector, useDispatch } from 'react-redux'
 import profileImage from '../../../images/profile.png'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { myOrders } from '../../../actions/orderAction'
 
 
 
 const UserOptions = () => {
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const { isAuthenticated, user } = useSelector((state) => state.user)
   const { cartItems } = useSelector((state) => state.cart)
+  let { loading, error, orders } = useSelector((state) => state.myOrders)
 
-
+  orders = orders && orders[orders.length - 1]
+  console.log("ordersssss", orders?.shippingInfo)
 
   const logout = () => {
 
@@ -36,6 +40,9 @@ const UserOptions = () => {
   }
 
 
+  useEffect(() => {
+    dispatch(myOrders())
+  }, [])
 
   return (
 
@@ -56,7 +63,7 @@ const UserOptions = () => {
                 <ul className="dropdown-menu">
                   <li><Link className="dropdown-item" to="/login" ><i class="fa fa-sign-in" aria-hidden="true"></i>Login</Link></li>
                   <li><Link className="dropdown-item item-count" to="/cart" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        Cart <span>{cartItems.length}</span> </Link></li>
+                    Cart <span>{cartItems.length}</span> </Link></li>
                 </ul>
               </li>
             </Nav.Link>
@@ -86,7 +93,7 @@ const UserOptions = () => {
                         Dashboard</Link></li>
                       <li><Link className="dropdown-item item-count" to="/cart" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         Cart <span>{cartItems.length}</span> </Link></li>
-                        {/* <li><Link className="dropdown-item item-count" to="/dashboard/points" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      {/* <li><Link className="dropdown-item item-count" to="/dashboard/points" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         Points <span>{1}</span> </Link></li> */}
                       <li><p className="dropdown-item" onClick={logout} ><i class="fa fa-sign-out" aria-hidden="true"></i>
                         Logout</p></li>
@@ -97,7 +104,7 @@ const UserOptions = () => {
                       <li><Link className="dropdown-item" to="/order">Orders</Link></li>
                       <li><Link className="dropdown-item item-count" to="/cart" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         Cart <span>{cartItems.length}</span> </Link></li>
-                        {/* <li><Link className="dropdown-item item-count" to="/dashboard/points" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      {/* <li><Link className="dropdown-item item-count" to="/dashboard/points" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         Points <span>{1}</span> </Link></li> */}
                       <li ><p className="dropdown-item" onClick={logout} >Logout</p></li>
 
@@ -117,10 +124,24 @@ const UserOptions = () => {
                   draggable
                   pauseOnHover />
               </li>
-            </Nav.Link></>
+            </Nav.Link>
+            
+            </>
 
       }
-
+      {
+         !isAuthenticated ?
+          <>
+         </>:
+          <div className="d-sm-flex">
+            <div className="delivery-map">  <i class="fa fa-map-marker" aria-hidden="true"></i></div>
+            <div className="delivery-details">
+          <p className="address1">Deliver to {user?.name?.slice(0, user?.name.indexOf(' '))}
+          <span className="address2">{orders?.shippingInfo?.city} 
+          {orders?.shippingInfo?.pinCode}</span></p></div>
+          </div>
+      }
+           
 
 
     </Nav>

@@ -1,10 +1,32 @@
 .font-link {
     font-family: 'Pacifico', cursive;
-    color:rgb(192, 189, 23)
-  }
+    color:rgb(192, 189, 23);
+    margin-left: 34px;
+}
+
   .dropdown-menu[data-bs-popper] {
     left: -47% !important;
 }
 
+.fa-search:before {
+  content: "\f002";
+  margin-left: -34px !important;
+}
+input#box::placeholder {
+  margin-left: 1px !important;
+}
 
+input[type="text"]::placeholder {
+  margin-right: 19%;
+}
 
+.sc-eCYdqJ.brDbYm {
+  width: 150%;
+}
+.container_search{
+  margin-top: -4px !important;
+}
+
+.mega-menu{
+  background-color:black
+}

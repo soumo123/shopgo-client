@@ -38,3 +38,6 @@ ul.catagory-list li:before{
     height: 100vh;
 }
 
+.caegory-item:hover {
+    color: black;
+}

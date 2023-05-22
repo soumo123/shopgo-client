@@ -8,15 +8,14 @@
   }
   
   .wrapper {
-    width: 100%;
-    width: 100%;
+    /* width: 100%;
+
     height: auto;
     min-height: 100vh;
     padding: 50px 20px;
-    padding-top: 100px;
+    padding-top: 100px; */
     display: flex;
     /* background-image: linear-gradient(-20deg, #ff2846 0%, #6944ff 100%); */
-    display: flex;
     /* background-image: linear-gradient(-20deg, #ff2846 0%, #6944ff 100%); */
   }
   @media screen and (max-width: 768px) {
@@ -53,6 +52,7 @@
   .profile-card__img {
     width: 150px;
     height: 150px;
+    margin-top: 97px;
     margin-left: auto;
     margin-right: auto;
     transform: translateY(-50%);
