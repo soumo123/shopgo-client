@@ -157,7 +157,7 @@ const shippingSubmit = (e)=>{
             <input 
               type="submit"
               value="Continue"
-              className="button cart_button_checkout"
+              className="button shipping-button"
               disabled={state ? false : true}
             />
             </div>

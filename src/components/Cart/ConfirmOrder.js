@@ -144,7 +144,7 @@ const proceedToPayment = () => {
               <p>GST : ₹{tax.toFixed(1)}</p>
               <p>Total :₹ {totalPrice.toFixed(2)}</p>
               {/* <button onClick={proceedToPayment} className="btn add-to-cart mb-2">Proceed To payment</button> */}
-              <button onClick={codPayement} className="btn add-to-cart mb-2" >COD Payment </button>
+              <button onClick={codPayement} className="btn confirm-button" >COD Payment </button>
 
             </div>
           </div>

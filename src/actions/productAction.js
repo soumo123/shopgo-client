@@ -71,13 +71,6 @@ export const getProduct = (keyword = "", currentPage = 1, price = [0, 20000], ca
 
 
 
-export const getProductDetails = (product) => {
-    return {
-        type: PRODUCT_DETAILS_SUCCESS,
-        payload: product
-    }
-
-}
 
 
 
@@ -104,6 +97,13 @@ export const getProductDetailsss = (id) => async (dispatch) => {
 
 
 
+  export const getProductDetails = (product) => {
+    return {
+        type: PRODUCT_DETAILS_SUCCESS,
+        payload: product
+    }
+
+}
 
 
 

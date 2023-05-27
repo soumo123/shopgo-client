@@ -7,11 +7,13 @@ import { Button } from 'react-bootstrap'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getProductDetails, newReview, updateLike } from '../../actions/productAction'
+import { getProductDetails, getProductDetailsss, newReview, updateLike } from '../../actions/productAction'
 import { LIKE_PRODUCT_RESET, NEW_REVIEW_REQUEST, NEW_REVIEW_RESET, PRODUCT_DETAILS_RESET, PRODUCT_DETAILS_SUCCESS } from '../../constants/productConstants'
 import ReviewPrpduct from './ReviewPrpduct'
 import Metadata from '../layout/Metadata';
 import { addItemsToCart } from '../../actions/cartAction'
+import ReactImageMagnify from "react-image-magnify";
+
 import {
   Dialog,
   DialogActions,
@@ -70,12 +72,18 @@ const ProductDetails = () => {
     const myForm = new FormData()
     myForm.set("like", like)
     dispatch(updateLike(productId, like))
-    setInterval(() => {
-      window.location.reload();
-    }, 1000);
+    dispatch(getProductDetailsss(productId))
+    dispatch({type:PRODUCT_DETAILS_SUCCESS})
+    // setInterval(() => {
+    //   window.location.reload();
+    // }, 1000);
 
   }
 
+useEffect(() => {
+  dispatch(getProductDetailsss(productId))
+  dispatch({type:PRODUCT_DETAILS_SUCCESS})
+}, [dispatch,productId])
 
 
 
@@ -101,9 +109,11 @@ const ProductDetails = () => {
     myForm.set("productId", productId)
     dispatch(newReview(myForm))
     setOpen(false)
-    setInterval(() => {
-      window.location.reload();
-    }, 1000);
+    dispatch(getProductDetailsss(productId))
+    dispatch({type:PRODUCT_DETAILS_SUCCESS})
+    // setInterval(() => {
+    //   window.location.reload();
+    // }, 1000);
 
   }
 
@@ -149,23 +159,23 @@ const ProductDetails = () => {
 
   return (
     <>
-   <div class="modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -181,14 +191,37 @@ const ProductDetails = () => {
             <div className="preview-pic tab-content">
               <div className="tab-pane active" id="pic-1">
                 <Metadata title={`${product.name}`} />
-                <Carousel>
-               
+                <Carousel >
+
 
                   {
 
                     images && images.map((item, i) => (
+
                       <Carousel.Item>
-                      {/* <ImageMagnify src={item.url}/> */}
+                        {/* <ReactImageMagnify
+                          // {...props}
+                          {...{
+                            smallImage: {
+                              alt: "Wristwatch by Ted Baker London",
+                              isFluidWidth: true,
+                              src: item.url,
+                            },
+                            largeImage: {
+                              src: item.url,
+                              width: 1000,
+                              height: 480,
+                            },
+                            enlargedImageContainerStyle: {
+                              zIndex: "1500",
+                            },
+                            enlargedImageContainerDimensions: {
+                              width: "100%",
+                              height: "100%",
+                            },
+                          }}
+                        /> */}
+                        {/* <ImageMagnify src={item.url}/> */}
                         <img key={item.url} src={item.url} alt={`${i} Slide`} />
                       </Carousel.Item>
 
@@ -210,7 +243,7 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div>
-              <i class="fa fa-truck" aria-hidden="true"></i><p className="delivery">Delivery within {product?.deliveryDays} Days</p>
+                <i class="fa fa-truck" aria-hidden="true"></i><p className="delivery">Delivery within {product?.deliveryDays} Days</p>
 
               </div>
               <div className="description-box">
@@ -305,7 +338,7 @@ const ProductDetails = () => {
                   <button className="btn add-to-cart " type="button" onClick={submitReviewToggle} >
                     Cancel
                   </button>
-                  <button className="btn add-to-cart " type="button"onClick={reviewSubmitHandler} >
+                  <button className="btn add-to-cart " type="button" onClick={reviewSubmitHandler} >
                     Submit
                   </button>
                 </DialogActions>
