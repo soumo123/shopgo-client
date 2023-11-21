@@ -2,6 +2,34 @@
   display: none;
 }
 
+.infinite-scroll-component{
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 12px;
+  align-items: center;
+  justify-content: flex-start
+}
+.infinite-scroll-component .productcard{
+  flex: 0 0 calc(25% - 20px); /* Distribute three cards in a row */
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #fff;
+  /* Add any other styling you need for each product card */
+}
+.productssss{
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 12px;
+  align-items: center;
+  justify-content: flex-start
+}
+.cardsss {
+  flex: 0 0 calc(20% - 20px); /* Distribute three cards in a row */
+  background-color: #fff;
+  /* Add any other styling you need for each product card */
+}
+
+
 @media (max-width: 1200px) {
   /* tablet devices */
 }

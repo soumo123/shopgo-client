@@ -42,6 +42,7 @@ import NoteFound from './components/layout/Not-Found/NoteFound';
 import Contact from './components/layout/Contact-us/Contact';
 import OtpVerification from './components/users/OtpVerification';
 import Points from './components/layout/Header/Points';
+import CategoriesProduct from './components/products/CategoriesProduct';
 
 
 function App() {
@@ -76,6 +77,8 @@ function App() {
 
         <Route exact path="/" element={<Home />} />
         <Route exact path="/product/:productId" element={<ProductDetails />} />
+        <Route exact path="/categories" element={<CategoriesProduct />} />
+
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/products" element={<AllProduct />} />
         <Route path="/products/:keyword" element={<AllProduct />} />

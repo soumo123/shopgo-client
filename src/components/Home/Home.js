@@ -17,11 +17,16 @@ import Carousels from "react-elastic-carousel";
 import Item from "../../Item";
 import LikeableProducts from '../products/LikeableProducts'
 import '../../../src/Responsive.css'
+import axios from 'axios'
+import ProductBox from './ProductBox.js'
+
+
+
 
 const Home = () => {
   const alert = useAlert()
   const dispatch = useDispatch()
-  const { loading, error, products, productscount } = useSelector((state) => state.products)
+  // const { loading, error, products, productscount } = useSelector((state) => state.products)
   const { product } = useSelector((state) => state.dealProduct)
 
 
@@ -31,6 +36,10 @@ const Home = () => {
 
 
   const [index, setIndex] = useState(0);
+  const [limit, setLimit] = useState(10)
+  const [offset, setOffset] = useState(10)
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -38,13 +47,9 @@ const Home = () => {
 
 
   useEffect(() => {
-
-    if (error) {
-      return alert.error(error)
-    }
     dispatch(getProduct())
     dispatch(getDealProductDetails())
-  }, [dispatch, error, alert, isRegistered])
+  }, [dispatch, alert, isRegistered])
 
 
   const breakPoints = [
@@ -59,8 +64,43 @@ const Home = () => {
 
 
 
+  const getProducts = () => {
+    axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/listofproducts?limit=${limit}&offset=${0}&keyword=${""}`).then((res) => {
+      setLoading(false)
+      setProducts(res.data.products)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
+
+  useEffect(() => {
+    getProducts()
+ 
+  }, [])
+
+
+  
+
+  const addMoreData = async () => {
+    setOffset(offset + 10);
+    const response = await axios.get(
+      `${process.env.REACT_APP_PRODUCTION_URL}/api/soummya/listofproducts?limit=${limit}&offset=${offset}&keyword=${""}`
+    );
+    const resdata = response.data.products;
+    setTimeout(() => {
+      setProducts(products.concat(resdata));
+    }, 500);
+  };
+
+  const fetchMoreData = () => {
+    addMoreData()
+  };
+
+
 
   {/* <div className="item" data-value="1">1</div> */ }
+
 
 
 
@@ -141,14 +181,10 @@ const Home = () => {
                 <h2>Feature Products</h2>
 
                 <div className="d-sm-flex align-item-center justify-content-center flex-wrap mt-4">
-                  {
 
-                    products && products.map(product => (
-                      <Product key={product._id} product={product} />
+                  <Product product={products} updatePagination={fetchMoreData} />
 
-                    ))
 
-                  }
 
                 </div>
 
@@ -176,7 +212,7 @@ const Home = () => {
                           <Item>
                             <Link className="" to={`/product/${element._id}`}>
                               <div className="slider-img">
-                                <img className="img-fluid" src={element.images[0].url} />
+                                <img className="img-fluid" src={element.images[0]?.url} />
                                 <div className="discount">
                                   <p className="dis">Upto {element.discount}%</p>
                                 </div>
@@ -207,6 +243,19 @@ const Home = () => {
                 </div>
               </div>
             </div>
+
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-sm-12" >
+                  <ProductBox />
+                </div>
+              </div>
+            </div>
+          
+
+
+
+
           </section>
         </>
 

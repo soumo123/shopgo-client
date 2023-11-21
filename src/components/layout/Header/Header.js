@@ -26,8 +26,13 @@ const Header = () => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState()
   const { products, loading, error, productscount, resultPerPage, filterProductsCount } = useSelector((state) => state.products)
-  const [top100Films, settop100Films] = useState([]);
+  const [searchData, setSearchData] = useState([]);
+  const[inputValue,setInputValue]=useState("")
+  const [selected, setSelected] = useState({});
+
   const [text, setText] = useState("");
+
+  
   const submitHandler = (e) => {
     console.log("comminggg")
     e.preventDefault()
@@ -39,36 +44,9 @@ const Header = () => {
   }
 
 
-  const handleOnSearch = (string, results) => {
-    console.log(string, results);
-  };
-
-  const handleOnHover = (result) => {
-    console.log(result);
-
-  };
-  const search = (text) => {
-    axios
-      .get(
-        `http://localhost:8000/api/soummya/products?keyword=${text}`
-      )
-      .then((ele) => {
-        console.log(ele.data.products);
-        settop100Films(ele.data.products);
-      })
-      .catch((err) => {
-        console.log(err);
-        settop100Films([]);
-      });
-  };
-
-
-  useEffect(() => {
-    search(text);
-  }, [text]);
 
   const handleOnSelect = (item) => {
-    console.log(item);
+    console.log("item",item);
     console.log("comming")
     if (item.name.trim()) {
       navigate(`/products/${item.name}`)
@@ -97,6 +75,48 @@ const Header = () => {
       </div>
     );
   };
+
+
+  
+
+
+  const handleOnSearchorg = async(string, results) => {
+    setInputValue(string)
+    if (string.length > 2 ) {
+     await axios.get(`http://localhost:8000/api/soummya/products?keyword=${string}`).then((res) => {
+        setSearchData(res.data.products);
+      })
+    }
+  };
+
+  const handleOnHoverorg = (result) => {
+
+  };
+
+
+  const handleOnSelectorg = (item) => {
+    // console.log(item);
+    if (item) {
+      console.log("item",item)
+      setSelected(item);
+      setInputValue("")
+      navigate(`/products/${item.name}`)
+
+    }else{
+      navigate(`/products/${inputValue}`)
+
+    }
+  };
+
+console.log("inputVlaue",inputValue)
+  const handleOnFocusorg = () => {
+  
+  };
+
+
+
+
+
 
 
   return (
@@ -138,8 +158,8 @@ const Header = () => {
 
                 <div class="container_search">
                   <div style={{ width: 300, margin: 20 }}>
-                    <ReactSearchAutocomplete
-                      items={top100Films}
+                    {/* <ReactSearchAutocomplete
+                      items={searchData}
                       onSearch={handleOnSearch}
                       onHover={handleOnHover}
                       onSelect={handleOnSelect}
@@ -151,9 +171,46 @@ const Header = () => {
                       value={products}
                       placeholder='Search Products'
                       autoFocus
-                    />
+                    /> */}
+                    <ReactSearchAutocomplete
+                                items={searchData}
+                                fuseOptions={{
+                                  shouldSort: true,
+                                  threshold: 0.6,
+                                  location: 0,
+                                  distance: 100,
+                                  maxPatternLength: 32,
+                                  minMatchCharLength: 3,
+                                  keys: ["name", "name"],
+                                }} // Search on both fields
+                                resultStringKeyName="name" // String to display in the results
+                                onSearch={handleOnSearchorg}
+                                onHover={handleOnHoverorg}
+                                inputSearchString={selected.lavel}
+                                onSelect={handleOnSelectorg}
+                                placeholder={"Search by organization name"}
+                                onFocus={handleOnFocusorg}
+                                onClear={handleOnClear}
+                                showIcon={false}
+                                styling={{
+                                  height: "34px",
+                                  border: "1px solid black",
+                                  borderRadius: "4px",
+                                  backgroundColor: "white",
+                                  boxShadow: "none",
+                                  hoverBackgroundColor: "#EA702B",
+                                  color: "black",
+                                  fontSize: "12px",
+                                  fontFamily: "Courier",
+                                  iconColor: "green",
+                                  lineColor: "#EA702B",
+                                  placeholderColor: "black",
+                                  clearIconMargin: "3px 8px 0 0",
+                                  zIndex: 1,
+                                }}
+                              />
                   </div>
-
+                  <button type="submit" onClick={submitHandler}>search</button>
 
 
 
